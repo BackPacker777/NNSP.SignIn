@@ -5,7 +5,6 @@
 "use strict";
 
 export default class DivContents {
-
     static getDayDivs(teamNum, counter) {
         return `<legend><strong>Team ${teamNum}:</strong></legend>
                     <div class="grid-x"">

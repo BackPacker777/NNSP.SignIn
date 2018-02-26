@@ -43,27 +43,27 @@ class Main {
             while (teamNum <= MAX_TEAM) {
                 if (teamNum === 1) {
                     document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t1counter);
-                    EventHandler.changePatrollerDiv(teamNum, t1counter);
+                    EventHandler.changePatrollerDiv(teamNum, t1counter, this.patrollers);
                     teamNum++;
                     t1counter++;
                 } else if (teamNum === 2) {
                     document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t2counter);
-                    EventHandler.changePatrollerDiv(teamNum, t2counter);
+                    EventHandler.changePatrollerDiv(teamNum, t2counter, this.patrollers);
                     teamNum++;
                     t2counter++;
                 } else if (teamNum === 3) {
                     document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t3counter);
-                    EventHandler.changePatrollerDiv(teamNum, t3counter);
+                    EventHandler.changePatrollerDiv(teamNum, t3counter, this.patrollers);
                     teamNum++;
                     t3counter++;
                 } else if (teamNum === 4) {
                     document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t4counter);
-                    EventHandler.changePatrollerDiv(teamNum, t4counter);
+                    EventHandler.changePatrollerDiv(teamNum, t4counter, this.patrollers);
                     teamNum++;
                     t4counter++;
                 } else if (teamNum === CANDIDATE_TEAM) {
                     document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayCandidateDivs(teamNum, t5counter);
-                    EventHandler.changePatrollerDiv(teamNum, t5counter);
+                    EventHandler.changePatrollerDiv(teamNum, t5counter, this.patrollers);
                     teamNum++;
                     t5counter++;
                 } else {
@@ -90,12 +90,6 @@ class Main {
                 }
                 counter++;
             }
-        }
-    }
-
-    getCounter(teamNum) {
-        if (teamNum === 1) {
-
         }
     }
 
