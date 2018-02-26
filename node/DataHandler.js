@@ -13,7 +13,7 @@ class DataHandler {
     }
 
     static setBaseData(callback) {
-        let filePath = 'data/patrollers.csv', columns = 4;
+        let filePath = 'data/patrollers.csv', columns = 5;
 
         FS.readFile(filePath, 'utf8', (err, file) => {
             let tempArray, finalData = [];
