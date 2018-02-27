@@ -7,23 +7,73 @@
             <h3>Quiz 4</h3>
         </div>
     </div>
-    <div class="grid-x grid-padding-x">
+    <div class="grid-x ">
         <div class="cell small-6 large-6"><h5 id="date"></h5></div>
         <div class="cell small-5 large-5"><h5 id="weekDay"></h5></div>
         <div class="cell small-1 large-1"><h5 id="dayNight"></h5></div>
     </div>
-
+    <hr>
     <form id="rosterForm">
-        <div class="grid-container">
-        <fieldset id="team1"></fieldset>
-        <fieldset id="team2"></fieldset>
-        <fieldset id="team3"></fieldset>
-        <fieldset id="team4"></fieldset>
-        <fieldset id="team5"> </fieldset>
-        <fieldset id="team6"></fieldset>
+        <fieldset id="team1">
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-1 success button border-rounded" id="joinTeam1">
+                    <strong>J o i n</strong>
+                </div>
+                <div class="cell small-2">
+                    <h5 class="vertical-center">Team 1:</h5>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="team2">
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-1 success button border-rounded" id="joinTeam2">
+                    <strong>J o i n</strong>
+                </div>
+                <div class="cell small-2">
+                    <h5 class="vertical-center">Team 2:</h5>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="team3">
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-1 success button border-rounded" id="joinTeam3">
+                    <strong>J o i n</strong>
+                </div>
+                <div class="cell small-2">
+                    <h5 class="vertical-center">Team 3:</h5>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="team4">
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-1 success button border-rounded" id="joinTeam4">
+                    <strong>J o i n</strong>
+                </div>
+                <div class="cell small-2">
+                    <h5 class="vertical-center">Team 4:</h5>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="team5">
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-1 success button border-rounded" id="joinTeam5">
+                    <strong>J o i n</strong>
+                </div>
+                <div class="cell small-2">
+                    <h5 class="vertical-center">Candidates/Auxiliary:</h5>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="team6">
+            <legend><strong>Leadership/Trainers:</strong></legend>
+        </fieldset>
         <div class="small-22 small-centered cell">
             <input type="submit" id="formSubmit" class="button round expanded" value="PRINT FORM"/>
-        </div>
         </div>
     </form>
 </div>

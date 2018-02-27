@@ -10,6 +10,7 @@ class Main {
     constructor(people) {
         this.date = new Date();
         this.patrollers = people;
+        this.eventHandler = new EventHandler();
         document.getElementById("date").innerText = this.getWeekDay();
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
@@ -36,51 +37,29 @@ class Main {
 
     prepUX() {
         let teamNum = 1;
-        let t1counter = 1, t2counter = 1, t3counter = 1, t4counter = 1, t5counter = 1, t6counter = 1;
+        let t6counter = 1;
         if (this.getDayNight() === "Day") {
             const MAX_TEAM = 6;
             const CANDIDATE_TEAM = 5;
             while (teamNum <= MAX_TEAM) {
-                if (teamNum === 1) {
-                    document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t1counter);
-                    EventHandler.changePatrollerDiv(teamNum, t1counter, this.patrollers);
+                if (teamNum <= CANDIDATE_TEAM) {
+                    this.eventHandler.handleTeamButtons(teamNum, 1, this.patrollers);
                     teamNum++;
-                    t1counter++;
-                } else if (teamNum === 2) {
-                    document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t2counter);
-                    EventHandler.changePatrollerDiv(teamNum, t2counter, this.patrollers);
-                    teamNum++;
-                    t2counter++;
-                } else if (teamNum === 3) {
-                    document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t3counter);
-                    EventHandler.changePatrollerDiv(teamNum, t3counter, this.patrollers);
-                    teamNum++;
-                    t3counter++;
-                } else if (teamNum === 4) {
-                    document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayDivs(teamNum, t4counter);
-                    EventHandler.changePatrollerDiv(teamNum, t4counter, this.patrollers);
-                    teamNum++;
-                    t4counter++;
-                } else if (teamNum === CANDIDATE_TEAM) {
-                    document.getElementById(`team${teamNum}`).innerHTML = DivContents.getDayCandidateDivs(teamNum, t5counter);
-                    EventHandler.changePatrollerDiv(teamNum, t5counter, this.patrollers);
-                    teamNum++;
-                    t5counter++;
                 } else {
                     let leaderNum = 0;
                     const MAX_LEADERS = 6;
-                    document.getElementById(`team${teamNum}`).innerHTML = `<legend><strong>Leadership/Trainers:</strong></legend>`;
                     while (leaderNum < MAX_LEADERS) {
                         document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
                         leaderNum++;
+                        t6counter++;
                     }
                     teamNum++;
-                    t6counter++;
                 }
             }
         } else {
             const MAX_PATROLLERS = 10;
             const RACE_TIMES = ['', '7:00', '7:15', '7:30', '7:45', '8:00', '8:15', '8:30', '8:45'];
+            let counter = 1;
             document.getElementById(`team${teamNum}`).innerHTML = `<legend><strong>Night Team:</strong></legend>`;
             while (counter <= MAX_PATROLLERS) {
                 if (counter < RACE_TIMES.length) {

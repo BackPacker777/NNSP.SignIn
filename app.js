@@ -36,23 +36,6 @@ class app {
                 }
             };
 
-/*
-            if (request.method === 'POST') {
-                if (request.headers['x-requested-with'] === 'XMLHttpRequest0') {
-                    request.on('data', () => {
-                        console.log(`Handling FETCH!`);
-                        DATA_HANDLER.setBaseData((patrollerData) => {
-                            response.writeHead(200, {'content-type': 'application/json'});
-                            response.end(patrollerData);
-                        });
-                    });
-                } else {
-                    response.writeHead(405, "Method not supported BDH, sorry.", {'Content-Type': 'text/html'});
-                    response.end(`<html><head><title>405 - Method not supported</title></head><body><h1>Method not supported.</h1></body></html>`);
-                }
-            }
-*/
-
             if (request.method === 'POST') {
                 if (request.headers['x-requested-with'] === 'fetch.0') {
                     DATA_HANDLER.setBaseData((patrollerData) => {
