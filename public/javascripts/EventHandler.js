@@ -5,55 +5,93 @@
 import DivContents from "./DivContents.js";
 
 export default class EventHandler {
-    constructor() {
+    constructor(patrollers) {
         this.signedIn = [];
+        this.patrollers = patrollers;
     }
 
-    handleTeamButtons(teamNum, counter, patrollers) {
+    handleTeamButtons(teamNum) {
+        let counter = 1;
         const DAY_TEAMS = 4;
+        const START_CHILDREN = 3;
         document.getElementById(`joinTeam${teamNum}`).addEventListener('click', () => {
             if (teamNum <= DAY_TEAMS) {
-                document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
-                this.changePatrollerDiv(teamNum, counter, patrollers);
-                this.handleHalfDay(teamNum, counter);
-                counter++;
+                if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
+                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
+                    this.changePatrollerDiv(teamNum, counter);
+                    this.handleHalfDay(teamNum, counter);
+                    counter++;
+                }
             } else {
                 document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
-                this.changePatrollerDiv(teamNum, counter, patrollers);
+                this.changePatrollerDiv(teamNum, counter);
                 counter++;
             }
         });
     }
 
-    changePatrollerDiv(teamNum, counter, patrollers) {
+    changePatrollerDiv(teamNum, counter) {
         document.getElementById(`patrollerID.${teamNum}.${counter}`).addEventListener('blur', () => {
-            if (this.signedIn.length > 0) {
-                for (let item of this.signedIn) {
-                    if (item === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
-                        alert(`You are already logged in.`);
+            let correctID = false;
+            if (document.getElementById(`patrollerID.${teamNum}.${counter}`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (this.signedIn[i] === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
+                            alert(`You are already logged in.`);
+                            document.getElementById(`patrollerID.${teamNum}.${counter}`).value = '';
+                            break;
+                        } else if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
+                            let time = new Date();
+                            this.signedIn.push(Number(this.patrollers[i][0]));
+                            document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
+                            document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
+                            document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
+                            document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
+                            correctID = true;
+                            break;
+                        }
+                    }
+                    if (correctID !== true) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.${teamNum}.${counter}`).value = '';
-                    } else {
-                        let time = new Date();
-                        this.signedIn.push(Number(patrollers[i][0]));
-                        document.getElementById(`name.${teamNum}.${counter}`).value = `${patrollers[i][2]} ${patrollers[i][1]}`;
-                        document.getElementById(`rating.${teamNum}.${counter}`).value = patrollers[i][3];
-                        document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
-                        document.getElementById(`days.${teamNum}.${counter}`).value = patrollers[i][4];
-                        break;
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
+                            let time = new Date();
+                            this.signedIn.push(Number(this.patrollers[i][0]));
+                            document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
+                            document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
+                            document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
+                            document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
+                            correctID = true;
+                            break;
+                        }
+                    }
+                    if (correctID !== true) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.${teamNum}.${counter}`).value = '';
                     }
                 }
             } else {
-                for (let i = 0; i < patrollers.length; i++) {
-                    if (Number(patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
-                        let time = new Date();
-                        this.signedIn.push(Number(patrollers[i][0]));
-                        document.getElementById(`name.${teamNum}.${counter}`).value = `${patrollers[i][2]} ${patrollers[i][1]}`;
-                        document.getElementById(`rating.${teamNum}.${counter}`).value = patrollers[i][3];
-                        document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
-                        document.getElementById(`days.${teamNum}.${counter}`).value = patrollers[i][4];
-                        break;
+                let getIds = document.getElementsByName('patrollerID');
+                let patrollerIDs = [];
+                for (let i = 0; i < getIds.length; i++) {
+                    patrollerIDs.push(Number(getIds[i].value));
+                }
+                let difference;  //https://stackoverflow.com/a/30288946/466246  Answer for difference between 2 arrays
+                for (let i = 0; i < this.signedIn.length; i++) {
+                    if (this.signedIn.indexOf(patrollerIDs[i]) === -1) {
+                        difference = this.signedIn[i];
                     }
                 }
+                this.signedIn.splice(this.signedIn.indexOf(difference), 1);
+                document.getElementById(`name.${teamNum}.${counter}`).value = ``;
+                document.getElementById(`radioNum.${teamNum}.${counter}`).value = ``;
+                document.getElementById(`rating.${teamNum}.${counter}`).value = ``;
+                document.getElementById(`time.${teamNum}.${counter}`).value = ``;
+                document.getElementById(`days.${teamNum}.${counter}`).value = ``;
+                document.getElementById(`guest.${teamNum}.${counter}`).value = ``;
             }
         });
     }

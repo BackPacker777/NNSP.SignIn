@@ -9,16 +9,15 @@ import EventHandler from './EventHandler.js';
 class Main {
     constructor(people) {
         this.date = new Date();
-        this.patrollers = people;
-        this.eventHandler = new EventHandler();
-        document.getElementById("date").innerText = this.getWeekDay();
+        this.eventHandler = new EventHandler(people);
+        document.getElementById("date").innerText = this.getWeekDay(people);
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
         this.prepUX();
     }
 
-    getWeekDay() {
-        console.log(this.patrollers[6][1]);
+    getWeekDay(patrollers) {
+        console.log(patrollers[6][1]);
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         return days[this.date.getDay()];
     }
@@ -40,10 +39,9 @@ class Main {
         let t6counter = 1;
         if (this.getDayNight() === "Day") {
             const MAX_TEAM = 6;
-            const CANDIDATE_TEAM = 5;
             while (teamNum <= MAX_TEAM) {
-                if (teamNum <= CANDIDATE_TEAM) {
-                    this.eventHandler.handleTeamButtons(teamNum, 1, this.patrollers);
+                if (teamNum < MAX_TEAM) {
+                    this.eventHandler.handleTeamButtons(teamNum);
                     teamNum++;
                 } else {
                     let leaderNum = 0;

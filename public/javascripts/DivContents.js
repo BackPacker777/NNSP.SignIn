@@ -6,10 +6,10 @@
 
 export default class DivContents {
     static getDayDivs(teamNum, counter) {
-        return `<div class="grid-x"">
+        return `<div class="grid-x" id="${teamNum}.${counter}">
                     <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="5" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" name="patrollerID" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
@@ -57,7 +57,7 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-3 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="5" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-5 cell">
@@ -96,7 +96,7 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-1 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="5" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
@@ -149,7 +149,7 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="5" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
@@ -194,7 +194,7 @@ export default class DivContents {
         return `<div class="grid-x"">
                             <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                                 <label>ID:
-                                    <input type="number" maxlength="5" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                                    <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                                 </label>
                             </div>
                             <div class="small-3 cell">
