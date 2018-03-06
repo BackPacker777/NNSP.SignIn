@@ -12,20 +12,35 @@ export default class EventHandler {
 
     handleTeamButtons(teamNum) {
         let counter = 1;
-        const DAY_TEAMS = 4;
+        const TEAMS = {
+            DAY: 4,
+            CANDIDATES: 5,
+            LEADERS: 6
+        };
         const START_CHILDREN = 3;
         document.getElementById(`joinTeam${teamNum}`).addEventListener('click', () => {
-            if (teamNum <= DAY_TEAMS) {
+            if (teamNum <= TEAMS.DAY) {
                 if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
                     document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
                     this.changePatrollerDiv(teamNum, counter);
-                    this.handleHalfDay(teamNum, counter);
+                    this.handleHalfDay(teamNum, counter, 'regular');
+                    counter++;
+                }
+            } else if (teamNum <= TEAMS.CANDIDATES) {
+                if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
+                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
+                    this.changePatrollerDiv(teamNum, counter);
+                    this.handleHalfDay(teamNum, counter, 'candidate');
                     counter++;
                 }
             } else {
-                document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
-                this.changePatrollerDiv(teamNum, counter);
-                counter++;
+                let leaderNum = 0;
+                let t6counter = 1;
+                while (leaderNum < TEAMS.LEADERS) {
+                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
+                    leaderNum++;
+                    t6counter++;
+                }
             }
         });
     }
@@ -96,17 +111,23 @@ export default class EventHandler {
         });
     }
 
-    handleHalfDay(teamNum, counter) {
+    handleHalfDay(teamNum, counter, team) {
         let time = new Date();
         const DAY_CUTOFF = 9;
         if (time.getHours() > DAY_CUTOFF) {
-            document.getElementById(`guest.${teamNum}.${counter}`).setAttribute('readonly', '');
+            if (team === 'regular') {
+                document.getElementById(`guest.${teamNum}.${counter}`).setAttribute('readonly', '');
+            }
+            document.getElementById(`halfDay.${teamNum}.${counter}`).setAttribute('disabled', 'disabled');
+            document.getElementById(`halfDay.${teamNum}.${counter}`).setAttribute('checked', 'checked');
         } else {
             document.getElementById(`halfDay.${teamNum}.${counter}`).addEventListener('click', () => {
-                if (document.getElementById(`halfDay.${teamNum}.${counter}`).checked) {
-                    document.getElementById(`guest.${teamNum}.${counter}`).setAttribute('readonly', '');
-                } else {
-                    document.getElementById(`guest.${teamNum}.${counter}`).removeAttribute('readonly');
+                if (team === 'regular') {
+                    if (document.getElementById(`halfDay.${teamNum}.${counter}`).checked) {
+                        document.getElementById(`guest.${teamNum}.${counter}`).setAttribute('readonly', '');
+                    } else {
+                        document.getElementById(`guest.${teamNum}.${counter}`).removeAttribute('readonly');
+                    }
                 }
             });
         }
