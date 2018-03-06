@@ -1,3 +1,4 @@
 ## Todo:
 
-* Test
+* Update days counts
+* Handle half days
