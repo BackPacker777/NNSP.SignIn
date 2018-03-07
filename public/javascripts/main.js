@@ -36,23 +36,12 @@ class Main {
 
     prepUX() {
         let teamNum = 1;
-        let t6counter = 1;
-        if (this.getDayNight() === "Day") {
+        // let t6counter = 1;
+        if (this.getDayNight() !== "Day") {
             const MAX_TEAM = 6;
             while (teamNum <= MAX_TEAM) {
-                if (teamNum < MAX_TEAM) {
-                    this.eventHandler.handleTeamButtons(teamNum);
-                    teamNum++;
-                } else {
-                    let leaderNum = 0;
-                    const MAX_LEADERS = 6;
-                    while (leaderNum < MAX_LEADERS) {
-                        document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
-                        leaderNum++;
-                        t6counter++;
-                    }
-                    teamNum++;
-                }
+                this.eventHandler.handleTeamButtons(teamNum);
+                teamNum++;
             }
         } else {
             const MAX_PATROLLERS = 10;

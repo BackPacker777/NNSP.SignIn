@@ -18,31 +18,35 @@ export default class EventHandler {
             LEADERS: 6
         };
         const START_CHILDREN = 3;
-        document.getElementById(`joinTeam${teamNum}`).addEventListener('click', () => {
-            if (teamNum <= TEAMS.DAY) {
-                if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
-                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
-                    this.changePatrollerDiv(teamNum, counter);
-                    this.handleHalfDay(teamNum, counter, 'regular');
-                    counter++;
+        if (teamNum < TEAMS.LEADERS) {
+            document.getElementById(`joinTeam${teamNum}`).addEventListener('click', () => {
+                if (teamNum <= TEAMS.DAY) {
+                    if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
+                        document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
+                        this.changePatrollerDiv(teamNum, counter);
+                        this.handleHalfDay(teamNum, counter, 'regular');
+                        counter++;
+                    }
+                } else if (teamNum <= TEAMS.CANDIDATES) {
+                    if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
+                        document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
+                        this.changePatrollerDiv(teamNum, counter);
+                        this.handleHalfDay(teamNum, counter, 'candidate');
+                        counter++;
+                    }
                 }
-            } else if (teamNum <= TEAMS.CANDIDATES) {
-                if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
-                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
-                    this.changePatrollerDiv(teamNum, counter);
-                    this.handleHalfDay(teamNum, counter, 'candidate');
-                    counter++;
-                }
-            } else {
-                let leaderNum = 0;
-                let t6counter = 1;
-                while (leaderNum < TEAMS.LEADERS) {
-                    document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
-                    leaderNum++;
-                    t6counter++;
-                }
+            });
+        } else {
+            let leaderNum = 0;
+            let t6counter = 1;
+            while (leaderNum < TEAMS.LEADERS) {
+                document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
+                this.changeLeaderDiv(t6counter);
+                this.handleHalfDay(teamNum, t6counter, 'regular');
+                leaderNum++;
+                t6counter++;
             }
-        });
+        }
     }
 
     changePatrollerDiv(teamNum, counter) {
@@ -107,6 +111,25 @@ export default class EventHandler {
                 document.getElementById(`time.${teamNum}.${counter}`).value = ``;
                 document.getElementById(`days.${teamNum}.${counter}`).value = ``;
                 document.getElementById(`guest.${teamNum}.${counter}`).value = ``;
+            }
+        });
+    }
+
+    changeLeaderDiv(counter) {
+        const LEADERS = {
+            PD: 234567,
+            APD1: 777777,
+            APD2: 111111,
+            APD3: 222222,
+            TR1: 333333,
+            TR2: 444444
+        };
+        document.getElementById(`patrollerID.6.${counter}`).addEventListener('blur', () => {
+            if (document.getElementById(`position.6.${t6counter}`).value === 'PD') {
+                if (! document.getElementById(`patrollerID.6.${t6counter}`).value === LEADERS.PD) {
+                    alert(`Invalid ID number. Please try again... Or don't...`);
+                    document.getElementById(`patrollerID.6.${t6counter}`).value = '';
+                }
             }
         });
     }

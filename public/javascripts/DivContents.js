@@ -111,7 +111,7 @@ export default class DivContents {
                     </div>
                     <div class="small-1 cell">
                         <label>Position:
-                            <input type="text" readonly value="${POSITIONS[leaderNum]}">
+                            <input type="text" readonly id="position.6.${counter}" value="${POSITIONS[leaderNum]}">
                         </label>
                     </div>
                     <div class="small-1 cell">
