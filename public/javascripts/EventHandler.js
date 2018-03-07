@@ -41,11 +41,10 @@ export default class EventHandler {
             let t6counter = 1;
             while (leaderNum < TEAMS.LEADERS) {
                 document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayLeaderDivs(teamNum, t6counter, leaderNum));
-                this.changeLeaderDiv(t6counter);
-                this.handleHalfDay(teamNum, t6counter, 'regular');
                 leaderNum++;
                 t6counter++;
             }
+            this.changeLeaderDiv();
         }
     }
 
@@ -60,12 +59,7 @@ export default class EventHandler {
                             document.getElementById(`patrollerID.${teamNum}.${counter}`).value = '';
                             break;
                         } else if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
-                            let time = new Date();
-                            this.signedIn.push(Number(this.patrollers[i][0]));
-                            document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
-                            document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
-                            document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
-                            document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
+                            this.populateDiv(teamNum, counter, i);
                             correctID = true;
                             break;
                         }
@@ -77,12 +71,7 @@ export default class EventHandler {
                 } else {
                     for (let i = 0; i < this.patrollers.length; i++) {
                         if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
-                            let time = new Date();
-                            this.signedIn.push(Number(this.patrollers[i][0]));
-                            document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
-                            document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
-                            document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${time.getMinutes()}`;
-                            document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
+                            this.populateDiv(teamNum, counter, i);
                             correctID = true;
                             break;
                         }
@@ -115,7 +104,20 @@ export default class EventHandler {
         });
     }
 
-    changeLeaderDiv(counter) {
+    populateDiv(teamNum, counter, i) {
+        let time = new Date();
+        let minutes = time.getMinutes();
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        this.signedIn.push(Number(this.patrollers[i][0]));
+        document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
+        document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
+        document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${minutes}`;
+        document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
+    }
+
+    changeLeaderDiv() {
         const LEADERS = {
             PD: 234567,
             APD1: 777777,
@@ -124,11 +126,87 @@ export default class EventHandler {
             TR1: 333333,
             TR2: 444444
         };
-        document.getElementById(`patrollerID.6.${counter}`).addEventListener('blur', () => {
-            if (document.getElementById(`position.6.${t6counter}`).value === 'PD') {
-                if (! document.getElementById(`patrollerID.6.${t6counter}`).value === LEADERS.PD) {
-                    alert(`Invalid ID number. Please try again... Or don't...`);
-                    document.getElementById(`patrollerID.6.${t6counter}`).value = '';
+        this.handleHalfDay(6, 1, 'regular');
+        document.getElementById(`patrollerID.6.1`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.1`).value) !== LEADERS.PD) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.1`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.1`).value)) {
+                        this.populateDiv(6, 1, i);
+                        break;
+                    }
+                }
+            }
+        });
+        this.handleHalfDay(6, 2, 'regular');
+        document.getElementById(`patrollerID.6.2`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD3) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.2`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.2`).value)) {
+                        this.populateDiv(6, 2, i);
+                        break;
+                    }
+                }
+            }
+        });
+        this.handleHalfDay(6, 3, 'regular');
+        document.getElementById(`patrollerID.6.3`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD3) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.3`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.3`).value)) {
+                        this.populateDiv(6, 3, i);
+                        break;
+                    }
+                }
+            }
+        });
+        this.handleHalfDay(6, 4, 'regular');
+        document.getElementById(`patrollerID.6.4`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD1 || Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD2 || Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD3) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.4`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.4`).value)) {
+                        this.populateDiv(6, 4, i);
+                        break;
+                    }
+                }
+            }
+        });
+        this.handleHalfDay(6, 5, 'regular');
+        document.getElementById(`patrollerID.6.5`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR2) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.5`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.5`).value)) {
+                        this.populateDiv(6, 5, i);
+                        break;
+                    }
+                }
+            }
+        });
+        this.handleHalfDay(6, 6, 'regular');
+        document.getElementById(`patrollerID.6.6`).addEventListener('blur', () => {
+            if (Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR2) {
+                alert(`Invalid ID number. Please try again... Or don't...`);
+                document.getElementById(`patrollerID.6.6`).value = '';
+            } else {
+                for (let i = 0; i < this.patrollers.length; i++) {
+                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.6`).value)) {
+                        this.populateDiv(6, 6, i);
+                        break;
+                    }
                 }
             }
         });

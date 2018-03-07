@@ -37,7 +37,7 @@ class Main {
     prepUX() {
         let teamNum = 1;
         // let t6counter = 1;
-        if (this.getDayNight() !== "Day") {
+        if (this.getDayNight() === "Day") {
             const MAX_TEAM = 6;
             while (teamNum <= MAX_TEAM) {
                 this.eventHandler.handleTeamButtons(teamNum);
