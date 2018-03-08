@@ -82,24 +82,7 @@ export default class EventHandler {
                     }
                 }
             } else {
-                let getIds = document.getElementsByName('patrollerID');
-                let patrollerIDs = [];
-                for (let i = 0; i < getIds.length; i++) {
-                    patrollerIDs.push(Number(getIds[i].value));
-                }
-                let difference;  //https://stackoverflow.com/a/30288946/466246  Answer for difference between 2 arrays
-                for (let i = 0; i < this.signedIn.length; i++) {
-                    if (this.signedIn.indexOf(patrollerIDs[i]) === -1) {
-                        difference = this.signedIn[i];
-                    }
-                }
-                this.signedIn.splice(this.signedIn.indexOf(difference), 1);
-                document.getElementById(`name.${teamNum}.${counter}`).value = ``;
-                document.getElementById(`radioNum.${teamNum}.${counter}`).value = ``;
-                document.getElementById(`rating.${teamNum}.${counter}`).value = ``;
-                document.getElementById(`time.${teamNum}.${counter}`).value = ``;
-                document.getElementById(`days.${teamNum}.${counter}`).value = ``;
-                document.getElementById(`guest.${teamNum}.${counter}`).value = ``;
+                this.clearDiv(teamNum, counter);
             }
         });
     }
@@ -117,6 +100,30 @@ export default class EventHandler {
         document.getElementById(`days.${teamNum}.${counter}`).value = this.patrollers[i][4];
     }
 
+    clearDiv(teamNum, counter) {
+        let getIds = document.getElementsByName('patrollerID');
+        let patrollerIDs = [];
+        for (let i = 0; i < getIds.length; i++) {
+            patrollerIDs.push(Number(getIds[i].value));
+        }
+        let difference;  //https://stackoverflow.com/a/30288946/466246  Answer for difference between 2 arrays
+        for (let i = 0; i < this.signedIn.length; i++) {
+            if (this.signedIn.indexOf(patrollerIDs[i]) === -1) {
+                difference = this.signedIn[i];
+            }
+        }
+        console.log(difference);
+        console.log(this.signedIn);
+        this.signedIn.splice(this.signedIn.indexOf(difference), 1);
+        console.log(this.signedIn);
+        document.getElementById(`name.${teamNum}.${counter}`).value = ``;
+        document.getElementById(`radioNum.${teamNum}.${counter}`).value = ``;
+        document.getElementById(`rating.${teamNum}.${counter}`).value = ``;
+        document.getElementById(`time.${teamNum}.${counter}`).value = ``;
+        document.getElementById(`days.${teamNum}.${counter}`).value = ``;
+        document.getElementById(`guest.${teamNum}.${counter}`).value = ``;
+    }
+
     changeLeaderDiv() {
         const LEADERS = {
             PD: 234567,
@@ -128,86 +135,164 @@ export default class EventHandler {
         };
         this.handleHalfDay(6, 1, 'regular');
         document.getElementById(`patrollerID.6.1`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.1`).value) !== LEADERS.PD) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.1`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.1`).value)) {
-                        this.populateDiv(6, 1, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.1`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.1`).value) !== LEADERS.PD) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.1`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.1`).value)) {
+                                this.populateDiv(6, 1, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.1`).value)) {
+                            this.populateDiv(6, 1, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 1);
             }
         });
         this.handleHalfDay(6, 2, 'regular');
         document.getElementById(`patrollerID.6.2`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD3) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.2`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.2`).value)) {
-                        this.populateDiv(6, 2, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.2`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD3) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.2`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.2`).value)) {
+                                this.populateDiv(6, 2, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.2`).value)) {
+                            this.populateDiv(6, 2, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 2);
             }
         });
         this.handleHalfDay(6, 3, 'regular');
         document.getElementById(`patrollerID.6.3`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD3) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.3`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.3`).value)) {
-                        this.populateDiv(6, 3, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.3`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD3) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.3`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.3`).value)) {
+                                this.populateDiv(6, 3, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.3`).value)) {
+                            this.populateDiv(6, 3, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 3);
             }
         });
         this.handleHalfDay(6, 4, 'regular');
         document.getElementById(`patrollerID.6.4`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD1 || Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD2 || Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD3) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.4`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.4`).value)) {
-                        this.populateDiv(6, 4, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.4`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD3) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.4`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.4`).value)) {
+                                this.populateDiv(6, 4, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.4`).value)) {
+                            this.populateDiv(6, 4, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 4);
             }
         });
         this.handleHalfDay(6, 5, 'regular');
         document.getElementById(`patrollerID.6.5`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR2) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.5`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.5`).value)) {
-                        this.populateDiv(6, 5, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.5`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR2) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.5`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.5`).value)) {
+                                this.populateDiv(6, 5, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.5`).value)) {
+                            this.populateDiv(6, 5, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 5);
             }
         });
         this.handleHalfDay(6, 6, 'regular');
         document.getElementById(`patrollerID.6.6`).addEventListener('blur', () => {
-            if (Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR2) {
-                alert(`Invalid ID number. Please try again... Or don't...`);
-                document.getElementById(`patrollerID.6.6`).value = '';
-            } else {
-                for (let i = 0; i < this.patrollers.length; i++) {
-                    if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.6`).value)) {
-                        this.populateDiv(6, 6, i);
-                        break;
+            if (document.getElementById(`patrollerID.6.6`).value !== '') {
+                if (this.signedIn.length > 0) {
+                    if (Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR2) {
+                        alert(`Invalid ID number. Please try again... Or don't...`);
+                        document.getElementById(`patrollerID.6.6`).value = '';
+                    } else {
+                        for (let i = 0; i < this.patrollers.length; i++) {
+                            if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.6`).value)) {
+                                this.populateDiv(6, 6, i);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < this.patrollers.length; i++) {
+                        if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.6.6`).value)) {
+                            this.populateDiv(6, 6, i);
+                            break;
+                        }
                     }
                 }
+            } else {
+                this.clearDiv(6, 6);
             }
         });
     }
