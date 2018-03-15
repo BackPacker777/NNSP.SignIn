@@ -381,7 +381,11 @@ export default class EventHandler {
         }
     }
 
-    updateDaysCount() {
-
+    async updateDaysCount() {
+        await fetch(`/data/patrollers.csv`, {
+            method: 'post',
+            headers: {'x-requested-with': 'fetch.1'},
+            body: JSON.stringify(this.signedIn)
+        });
     }
 }

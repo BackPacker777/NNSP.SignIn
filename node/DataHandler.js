@@ -26,6 +26,14 @@ class DataHandler {
             return finalData;
         });
     }
+
+    static updatePatrollerDays(patrollerData, callback) {
+        console.log(`Meow`);
+        let filePath = 'data/patrollers.csv', columns = 5;
+        FS.writeFile(filePath, 'utf8', (err, file) => {
+
+        });
+    }
 }
 
 module.exports = DataHandler;

@@ -42,6 +42,10 @@ class app {
                         response.writeHead(200, {'content-type': 'application/json'});
                         response.end(patrollerData);
                     });
+                } else if(request.headers['x-requested-with'] === 'fetch.1') {
+                    DATA_HANDLER.updatePatrollerDays(() => {
+
+                    });
                 } else {
                     console.log(`Yo, somethings super wrong BDH!`);
                 }
