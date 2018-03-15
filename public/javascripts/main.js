@@ -13,6 +13,8 @@ class Main {
         document.getElementById("date").innerText = this.getWeekDay(people);
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
+        document.getElementById("formSubmit").disabled = true;
+        document.getElementById("formSubmit").classList.add('disabled');
         this.prepUX();
     }
 
@@ -36,7 +38,6 @@ class Main {
 
     prepUX() {
         let teamNum = 1;
-        // let t6counter = 1;
         if (this.getDayNight() === "Day") {
             const MAX_TEAM = 6;
             while (teamNum <= MAX_TEAM) {
