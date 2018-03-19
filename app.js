@@ -43,8 +43,12 @@ class app {
                         response.end(patrollerData);
                     });
                 } else if(request.headers['x-requested-with'] === 'fetch.1') {
-                    DATA_HANDLER.updatePatrollerDays(() => {
-
+                    let body = [];
+                    request.on('data', (chunk) => {
+                        body.push(chunk);
+                    }).on('end', () => {
+                        body = Buffer.concat(body).toString();
+                        DATA_HANDLER.updatePatrollerDays(body);
                     });
                 } else {
                     console.log(`Yo, somethings super wrong BDH!`);
@@ -58,7 +62,6 @@ class app {
             } else if (request.url.indexOf('.ico') >= 0) {
                 DATA_HANDLER.renderDom(request.url.slice(1), 'image/x-icon', httpHandler, 'binary');
             } else if (request.url.indexOf('results.ejs') >= 0) {
-                console.log(`Displaying Results`);
                 DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
             } else if (request.url.indexOf('/') >= 0) {
                 DATA_HANDLER.renderDom('public/views/index.ejs', 'text/html', httpHandler, 'utf-8');
