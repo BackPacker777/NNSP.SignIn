@@ -27,9 +27,13 @@ class DataHandler {
         });
     }
 
-    static updatePatrollerDays(patrollerData) {
+    static updatePatrollerDays(patrollerData, callback) {
+        const results = patrollerData;
         patrollerData = JSON.parse(patrollerData);
-        let tempFilePath = `data/temp.csv`, columns = 5, finalFilePath = `data/patrollers.csv`;
+        let tempFilePath = `data/temp.csv`;
+        let columns = 5;
+        let finalFilePath = `data/patrollers.csv`;
+        let changed = false;
         FS.readFile(finalFilePath, `utf8`, (err, file) => {
             let tempArray, finalData = [];
             tempArray = file.split(/\r?\n/); //remove newlines
@@ -41,6 +45,7 @@ class DataHandler {
                     if (Number(finalData[i][0]) === Number(patrollerData[j].ID)) {
                         finalData[i][4] = patrollerData[j].DAYS;
                         patrollerData.splice(j, 1);
+                        changed = true;
                     }
                 }
             }
@@ -53,8 +58,11 @@ class DataHandler {
             FS.writeFile(tempFilePath, cells, `utf8`, (err) => {
                 if (err) throw err;
             });
-            FS.unlinkSync(finalFilePath);
-            FS.renameSync(tempFilePath, finalFilePath)
+            if (changed === true) {
+                FS.unlinkSync(finalFilePath);
+                FS.renameSync(tempFilePath, finalFilePath);
+            }
+            callback(results);
         });
     }
 }

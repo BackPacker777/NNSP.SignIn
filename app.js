@@ -48,7 +48,17 @@ class app {
                         body.push(chunk);
                     }).on('end', () => {
                         body = Buffer.concat(body).toString();
-                        DATA_HANDLER.updatePatrollerDays(body);
+                        DATA_HANDLER.updatePatrollerDays(body, (results) => {
+                            console.log(results);
+                            response.writeHead(200, {'content-type': 'application/json'});
+                            response.end(results);
+                            /*response.writeHead(200, {'content-type': 'application/json'});
+                            DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
+                            response.renderDom(`./results.ejs`, {
+                                results: results
+                            });
+                            response.end(`Done`);*/
+                        });
                     });
                 } else {
                     console.log(`Yo, somethings super wrong BDH!`);

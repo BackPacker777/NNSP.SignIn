@@ -101,7 +101,13 @@ export default class EventHandler {
         }
         let patroller = {
             ID: Number(this.patrollers[i][0]),
-            DAYS: Number(this.patrollers[i][4]) + dayCount
+            RADIO: document.getElementById(`radioNum.${teamNum}.${counter}`).value,
+            NAME: `${this.patrollers[i][2]} ${this.patrollers[i][1]}`,
+            RATING: this.patrollers[i][3],
+            TIME: document.getElementById(`time.${teamNum}.${counter}`).value,
+            DAYS: Number(this.patrollers[i][4]) + dayCount,
+            GUEST: document.getElementById(`guest.${teamNum}.${counter}`).value,
+            TEAM: teamNum
         };
         this.signedIn.push(patroller);
         document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
@@ -370,8 +376,10 @@ export default class EventHandler {
                 let answer = Number(prompt(`Password?`));
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer) {
-                        this.updateDaysCount();
-                        window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
+                        this.updateDaysCount((results) => {
+
+                        });
+                        // window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else {
                         console.log(`Incorrect password. Please try again.`);
@@ -381,7 +389,7 @@ export default class EventHandler {
         }
     }
 
-    async updateDaysCount() {
+    async updateDaysCount(callback) {
         let data = JSON.stringify(this.signedIn);
         await fetch(document.url, {
             method: 'POST',
