@@ -30,9 +30,9 @@ class DataHandler {
     static updatePatrollerDays(patrollerData, callback) {
         const results = patrollerData;
         patrollerData = JSON.parse(patrollerData);
-        let tempFilePath = `data/temp.csv`;
-        let columns = 5;
-        let finalFilePath = `data/patrollers.csv`;
+        const tempFilePath = `data/temp.csv`;
+        const columns = 5;
+        const finalFilePath = `data/patrollers.csv`;
         let changed = false;
         FS.readFile(finalFilePath, `utf8`, (err, file) => {
             let tempArray, finalData = [];

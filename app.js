@@ -49,7 +49,6 @@ class app {
                     }).on('end', () => {
                         body = Buffer.concat(body).toString();
                         DATA_HANDLER.updatePatrollerDays(body, (results) => {
-                            console.log(results);
                             response.writeHead(200, {'content-type': 'application/json'});
                             response.end(results);
                             /*response.writeHead(200, {'content-type': 'application/json'});

@@ -377,7 +377,8 @@ export default class EventHandler {
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer) {
                         this.updateDaysCount((results) => {
-
+                            console.log(results);
+                            // window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         });
                         // window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
@@ -395,6 +396,9 @@ export default class EventHandler {
             method: 'POST',
             headers: {'x-requested-with': 'fetch.1'},
             body: data
+        }).then(response => response.json()) // https://css-tricks.com/using-fetch/
+          .then(data => {
+            callback(data);
         });
     }
 }
