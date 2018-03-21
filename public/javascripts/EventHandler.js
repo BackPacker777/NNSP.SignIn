@@ -376,11 +376,10 @@ export default class EventHandler {
                 let answer = Number(prompt(`Password?`));
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer) {
-                        this.updateDaysCount((results) => {
-                            console.log(results);
-                            // window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
+                        this.updateDaysCount((data) => {
+                            data = JSON.parse(data);
+                            window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         });
-                        // window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else {
                         console.log(`Incorrect password. Please try again.`);
@@ -390,15 +389,26 @@ export default class EventHandler {
         }
     }
 
-    async updateDaysCount(callback) {
+    /*async updateDaysCount() {
         let data = JSON.stringify(this.signedIn);
-        await fetch(document.url, {
+        // await fetch(document.url, {
+        await fetch(`./results.ejs`, {
             method: 'POST',
             headers: {'x-requested-with': 'fetch.1'},
             body: data
-        }).then(response => response.json()) // https://css-tricks.com/using-fetch/
-          .then(data => {
-            callback(data);
         });
+    }*/
+
+    async updateDaysCount(callback) {
+        let dataX = JSON.stringify(this.signedIn);
+        await fetch(document.url, {
+            method: 'POST',
+            headers: {'x-requested-with': 'fetch.1'},
+            body: dataX
+        }).then(response => response.json()); // https://css-tricks.com/using-fetch/
+          /*.then(data => {
+              console.log(data);
+              callback(data);
+        });*/
     }
 }

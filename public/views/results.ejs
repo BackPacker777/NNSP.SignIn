@@ -9,8 +9,8 @@
     <div class="grid-x">
         <div class="cell small-12">
             <ul>
-                <% results.forEach((result) => { %>
-                <li><%= result.ID %> . <%= result.NAME %> . <%= result.DAYS %></li>
+                <% data.forEach((result) => { %>
+                    <li><%= result.ID %> . <%= result.NAME %> . <%= result.DAYS %></li>
                 <% }); %>
             </ul>
         </div>

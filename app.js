@@ -7,13 +7,14 @@ const DATA_HANDLER = require('./node/DataHandler');
 class app {
     constructor() {
         this.ejsData = null;
+        this.fileName = `index.ejs`;
         this.loadServer();
     }
 
     loadServer() {
         const HTTP = require('http');
-        const PORT = 8111;
         const EJS = require('ejs');
+        const PORT = 8111;
 
         HTTP.createServer((request, response) => {
 
@@ -25,10 +26,11 @@ class app {
                     response.writeHead(200, {'Content-Type': contentType});
                     response.end(string, 'utf-8');
                 } else if (contentType.indexOf('html') >= 0) {
+                    console.log(this.fileName);
                     response.writeHead(200, {'Content-Type': contentType});
                     response.end(EJS.render(string, {
                         data: this.ejsData,
-                        filename: 'index.ejs'
+                        filename: this.fileName
                     }));
                 } else {
                     response.writeHead(200, {'Content-Type': contentType});
@@ -49,14 +51,9 @@ class app {
                     }).on('end', () => {
                         body = Buffer.concat(body).toString();
                         DATA_HANDLER.updatePatrollerDays(body, (results) => {
-                            response.writeHead(200, {'content-type': 'application/json'});
-                            response.end(results);
-                            /*response.writeHead(200, {'content-type': 'application/json'});
+                            this.ejsData = JSON.parse(results);
+                            this.fileName = `results.ejs`;
                             DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
-                            response.renderDom(`./results.ejs`, {
-                                results: results
-                            });
-                            response.end(`Done`);*/
                         });
                     });
                 } else {
@@ -70,9 +67,9 @@ class app {
                 DATA_HANDLER.renderDom(request.url.slice(1), 'image/png', httpHandler, 'binary');
             } else if (request.url.indexOf('.ico') >= 0) {
                 DATA_HANDLER.renderDom(request.url.slice(1), 'image/x-icon', httpHandler, 'binary');
-            } else if (request.url.indexOf('results.ejs') >= 0) {
+            } /*else if (request.url.indexOf('results.ejs') >= 0) {
                 DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
-            } else if (request.url.indexOf('/') >= 0) {
+            }*/ else if (request.url.indexOf('/') >= 0) {
                 DATA_HANDLER.renderDom('public/views/index.ejs', 'text/html', httpHandler, 'utf-8');
             } else {
                 DATA_HANDLER.renderDom(`HEY! What you're looking for: It's not here!`, 'text/html', httpHandler, 'utf-8');
