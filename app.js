@@ -26,7 +26,6 @@ class app {
                     response.writeHead(200, {'Content-Type': contentType});
                     response.end(string, 'utf-8');
                 } else if (contentType.indexOf('html') >= 0) {
-                    console.log(this.fileName);
                     response.writeHead(200, {'Content-Type': contentType});
                     response.end(EJS.render(string, {
                         data: this.ejsData,
@@ -53,7 +52,6 @@ class app {
                         DATA_HANDLER.updatePatrollerDays(body, (results) => {
                             this.ejsData = JSON.parse(results);
                             this.fileName = `results.ejs`;
-                            DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
                         });
                     });
                 } else {
@@ -67,9 +65,9 @@ class app {
                 DATA_HANDLER.renderDom(request.url.slice(1), 'image/png', httpHandler, 'binary');
             } else if (request.url.indexOf('.ico') >= 0) {
                 DATA_HANDLER.renderDom(request.url.slice(1), 'image/x-icon', httpHandler, 'binary');
-            } /*else if (request.url.indexOf('results.ejs') >= 0) {
+            } else if (request.url.indexOf('results.ejs') >= 0) {
                 DATA_HANDLER.renderDom('public/views/results.ejs', 'text/html', httpHandler, 'utf-8');
-            }*/ else if (request.url.indexOf('/') >= 0) {
+            } else if (request.url.indexOf('/') >= 0) {
                 DATA_HANDLER.renderDom('public/views/index.ejs', 'text/html', httpHandler, 'utf-8');
             } else {
                 DATA_HANDLER.renderDom(`HEY! What you're looking for: It's not here!`, 'text/html', httpHandler, 'utf-8');
