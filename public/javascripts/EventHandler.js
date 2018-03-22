@@ -53,7 +53,6 @@ export default class EventHandler {
         document.getElementById(`patrollerID.${teamNum}.${counter}`).addEventListener('change', () => {
             let correctID = false;
             if (document.getElementById(`patrollerID.${teamNum}.${counter}`).value !== '') {
-                console.log(this.signedIn.length);
                 if (this.signedIn.length > 0) {
                     for (let i = 0; i < this.patrollers.length; i++) {
                         if (i < this.signedIn.length && this.signedIn[i].ID === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
@@ -63,6 +62,12 @@ export default class EventHandler {
                         } else if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
                             this.populateDiv(teamNum, counter, i);
                             correctID = true;
+                            document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value);
+                            });
+                            document.getElementById(`guest.${teamNum}.${counter}`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value);
+                            });
                             break;
                         }
                     }
@@ -87,6 +92,10 @@ export default class EventHandler {
                 this.clearDiv(teamNum, counter);
             }
         });
+    }
+
+    updatePatrollerInfo(patrollerID, radioNum) {
+        console.log(`Patroller: ${patrollerID} :: Radio: ${radioNum}`);
     }
 
     populateDiv(teamNum, counter, i) {
