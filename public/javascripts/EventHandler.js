@@ -80,6 +80,12 @@ export default class EventHandler {
                         if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
                             this.populateDiv(teamNum, counter, i);
                             correctID = true;
+                            document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value);
+                            });
+                            document.getElementById(`guest.${teamNum}.${counter}`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value);
+                            });
                             break;
                         }
                     }
