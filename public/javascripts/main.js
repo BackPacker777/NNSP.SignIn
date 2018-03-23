@@ -1,8 +1,5 @@
-/**
- *   TODO:
- */
-
 "use strict";
+
 import DivContents from './DivContents.js';
 import EventHandler from './EventHandler.js';
 

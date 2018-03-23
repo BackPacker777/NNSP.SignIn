@@ -63,10 +63,10 @@ export default class EventHandler {
                             this.populateDiv(teamNum, counter, i);
                             correctID = true;
                             document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
-                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value);
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value, `radio`);
                             });
                             document.getElementById(`guest.${teamNum}.${counter}`).addEventListener('change', () => {
-                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value);
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value, `guest`);
                             });
                             break;
                         }
@@ -81,10 +81,10 @@ export default class EventHandler {
                             this.populateDiv(teamNum, counter, i);
                             correctID = true;
                             document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
-                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value);
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value, `radio`);
                             });
                             document.getElementById(`guest.${teamNum}.${counter}`).addEventListener('change', () => {
-                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value);
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.${teamNum}.${counter}`).value, `guest`);
                             });
                             break;
                         }
@@ -100,8 +100,19 @@ export default class EventHandler {
         });
     }
 
-    updatePatrollerInfo(patrollerID, radioNum) {
-        console.log(`Patroller: ${patrollerID} :: Radio: ${radioNum}`);
+    updatePatrollerInfo(patrollerID, radioGuestDays, whichListener) {
+        for (let patroller of this.signedIn) {
+            if (Number(patroller.ID) === Number(patrollerID)) {
+                if (whichListener === `radio`) {
+                    patroller.RADIO = radioGuestDays;
+                } else if (whichListener === `guest`) {
+                    patroller.GUEST = radioGuestDays;
+                } else {
+                    patroller.DAYS = radioGuestDays;
+                }
+                break;
+            }
+        }
     }
 
     populateDiv(teamNum, counter, i) {
@@ -114,6 +125,7 @@ export default class EventHandler {
         if (this.halfDay === true) {
             dayCount = .5;
         }
+        document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${minutes}`;
         let patroller = {
             ID: Number(this.patrollers[i][0]),
             RADIO: document.getElementById(`radioNum.${teamNum}.${counter}`).value,
@@ -127,7 +139,6 @@ export default class EventHandler {
         this.signedIn.push(patroller);
         document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
         document.getElementById(`rating.${teamNum}.${counter}`).value = this.patrollers[i][3];
-        document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${minutes}`;
         document.getElementById(`days.${teamNum}.${counter}`).value = this.signedIn[this.signedIn.length - 1].DAYS;
     }
 
@@ -175,6 +186,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.1`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.1`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -186,6 +203,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.1`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.1`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -208,6 +231,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.2`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -219,6 +248,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.2`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -241,6 +276,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.3`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.3`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -252,6 +293,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.3`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.3`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -274,6 +321,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.4`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.4`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -285,6 +338,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.4`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.4`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -307,6 +366,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.5`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.5`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -318,6 +383,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.5`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.5`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -340,6 +411,12 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
+                                });
+                                document.getElementById(`guest.6.6`).addEventListener('change', () => {
+                                    this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.6`).value, `guest`);
+                                });
                                 break;
                             }
                         }
@@ -351,6 +428,12 @@ export default class EventHandler {
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
                             this.handlePrintFormButton(LEADERS);
+                            document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
+                            });
+                            document.getElementById(`guest.6.6`).addEventListener('change', () => {
+                                this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.6`).value, `guest`);
+                            });
                             break;
                         }
                     }
@@ -376,9 +459,12 @@ export default class EventHandler {
                 if (team === 'regular') {
                     if (document.getElementById(`halfDay.${teamNum}.${counter}`).checked) {
                         document.getElementById(`guest.${teamNum}.${counter}`).setAttribute('readonly', '');
+                        document.getElementById(`days.${teamNum}.${counter}`).value = Number(document.getElementById(`days.${teamNum}.${counter}`).value) - .5;
                     } else {
                         document.getElementById(`guest.${teamNum}.${counter}`).removeAttribute('readonly');
+                        document.getElementById(`days.${teamNum}.${counter}`).value = Number(document.getElementById(`days.${teamNum}.${counter}`).value) + .5;
                     }
+                    this.updatePatrollerInfo(document.getElementById(`patrollerID.${teamNum}.${counter}`).value, document.getElementById(`days.${teamNum}.${counter}`).value, `halfDay`);
                     this.halfDay = true;
                 }
             });

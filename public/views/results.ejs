@@ -6,15 +6,37 @@
             <h3>Quiz Four</h3>
         </div>
     </div>
+    <div class="grid-x ">
+        <div class="cell small-6 large-6"><h4 id="date"></h4></div>
+        <div class="cell small-5 large-5"><h4 id="weekDay"></h4></div>
+        <div class="cell small-1 large-1"><h4 id="dayNight"></h4></div>
+    </div>
     <div class="grid-x">
         <div class="cell small-12">
+            <h5>Team 1</h5>
             <ul>
                 <% data.forEach((result) => { %>
-                    <li><%= result.ID %> . <%= result.NAME %> . <%= result.DAYS %> . <%= result.RADIO %></li>
+                    <% if (Number(result.TEAM) === 1) { %>
+                        <li><%= result.ID %> . <%= result.NAME %> . <%= result.RADIO %> . <%= result.DAYS %> . <%= result.RATING %> . <%= result.TIME %> . <%= result.GUEST %></li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-x">
+        <div class="cell small-12">
+            <h5>Team 2</h5>
+            <ul>
+                <% data.forEach((result) => { %>
+                <% if (Number(result.TEAM) === 2) { %>
+                <li><%= result.ID %> . <%= result.NAME %> . <%= result.RADIO %> . <%= result.DAYS %> . <%= result.RATING %> . <%= result.TIME %> . <%= result.GUEST %></li>
+                <% } %>
                 <% }); %>
             </ul>
         </div>
     </div>
 </div>
+<!-- SCRIPTS -->
+<script src="/public/javascripts/results.js" type="module"></script>
 
 <% include public/views/footer.ejs %>
