@@ -24,15 +24,15 @@ export default class EventHandler {
                 if (teamNum <= TEAMS.DAY) {
                     if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
                         document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayDivs(teamNum, counter));
-                        this.changePatrollerDiv(teamNum, counter);
                         this.handleHalfDay(teamNum, counter, 'regular');
+                        this.changePatrollerDiv(teamNum, counter);
                         counter++;
                     }
                 } else if (teamNum === TEAMS.CANDIDATES) {
                     if (document.getElementById(`team${teamNum}`).childNodes.length === START_CHILDREN || document.getElementById(`patrollerID.${teamNum}.${counter - 1}`).value !== '') {
                         document.getElementById(`team${teamNum}`).insertAdjacentHTML('beforeend', DivContents.getDayCandidateDivs(teamNum, counter));
-                        this.changePatrollerDiv(teamNum, counter);
                         this.handleHalfDay(teamNum, counter, 'candidate');
+                        this.changePatrollerDiv(teamNum, counter);
                         counter++;
                     }
                 }
@@ -166,7 +166,7 @@ export default class EventHandler {
     changeLeaderDiv() {
         const LEADERS = {
             PD: 234567,
-            APD1: 777777,
+            APD1: 555555,
             APD2: 111111,
             APD3: 222222,
             TR1: 333333,
@@ -465,20 +465,20 @@ export default class EventHandler {
                         document.getElementById(`days.${teamNum}.${counter}`).value = Number(document.getElementById(`days.${teamNum}.${counter}`).value) + .5;
                     }
                     this.updatePatrollerInfo(document.getElementById(`patrollerID.${teamNum}.${counter}`).value, document.getElementById(`days.${teamNum}.${counter}`).value, `halfDay`);
-                    this.halfDay = true;
                 }
             });
         }
     }
 
     handlePrintFormButton(LEADERS) {
+        console.log(LEADERS);
         if (!document.getElementById("formSubmit").disabled) {
             document.getElementById('formSubmit').addEventListener('click', () => {
                 let answer = Number(prompt(`Password?`));
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer) {
                         this.updateDaysCount().then(() => {});
-                        window.open('/public/views/results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
+                        window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else {
                         console.log(`Incorrect password. Please try again.`);

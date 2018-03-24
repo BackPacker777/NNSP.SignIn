@@ -13,6 +13,7 @@ class Main {
         document.getElementById("formSubmit").disabled = true;
         document.getElementById("formSubmit").classList.add('disabled');
         this.prepUX();
+        this.overrideLeaderSubmit();
     }
 
     getWeekDay(patrollers) {
@@ -54,6 +55,18 @@ class Main {
                 }
                 counter++;
             }
+        }
+    }
+
+    overrideLeaderSubmit() {
+        const SAT = 6, SUN = 0;
+        const OVERRIDE = {
+            OVERRIDE: 777777
+        };
+        if (this.date.getDay() !== SAT && this.date.getDay() !== SUN) {
+            document.getElementById("formSubmit").disabled = false;
+            document.getElementById("formSubmit").classList.remove('disabled');
+            this.eventHandler.handlePrintFormButton(OVERRIDE);
         }
     }
 
