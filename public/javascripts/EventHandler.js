@@ -5,9 +5,10 @@
 import DivContents from "./DivContents.js";
 
 export default class EventHandler {
-    constructor(patrollers) {
+    constructor(patrollers, dayNight) {
         this.signedIn = [];
         this.patrollers = patrollers;
+        this.dayNight = dayNight;
         this.halfDay = false;
     }
 
@@ -471,20 +472,53 @@ export default class EventHandler {
     }
 
     handlePrintFormButton(LEADERS) {
-        console.log(LEADERS);
         if (!document.getElementById("formSubmit").disabled) {
             document.getElementById('formSubmit').addEventListener('click', () => {
                 let answer = Number(prompt(`Password?`));
+                let correct = false;
                 for (let key in LEADERS) {
-                    if (LEADERS[key] === answer) {
+                    if (LEADERS[key] === answer && this.dayNight === `Day`) {
+                        correct = true;
+                        document.getElementById("formSubmit").disabled = true;
+                        document.getElementById("formSubmit").classList.add('disabled');
+                        document.getElementById('formSubmit').removeEventListener('click', () => {});
+                        this.diasbleExisting();
                         this.updateDaysCount().then(() => {});
                         window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
-                    } else {
-                        console.log(`Incorrect password. Please try again.`);
+                    } else if (LEADERS[key] === answer && this.dayNight === `Night`) {
+                        correct = true;
+                        document.getElementById("formSubmit").disabled = true;
+                        document.getElementById("formSubmit").classList.add('disabled');
+                        document.getElementById('formSubmit').removeEventListener('click', () => {});
+                        this.diasbleExisting();
+                        this.updateDaysCount().then(() => {});
+                        window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
+                        break;
                     }
                 }
+                if (! correct) {
+                    alert(`Incorrect password. Please try again.`);
+                } else {
+                    document.getElementById('formSubmit').removeEventListener('click', () => {});
+                }
+                // } else {
+                //     document.getElementById("formSubmit").disabled = false;
+                //     document.getElementById("formSubmit").classList.remove('disabled');
+                // }
             });
+        }
+    }
+
+    diasbleExisting() {
+        let form = document.getElementById(`rosterForm`);
+        let elements = form.elements;
+        for (let i = 0; i < elements.length; i++) {
+            if (! /\.6\./.test(elements[i].id)) {
+                elements[i].disabled = true;
+            } else {
+                console.log(elements[i].id);
+            }
         }
     }
 

@@ -11,4 +11,7 @@
 * Fix results js 500 error
 * Handle write-in guest-patrollers
 * Make existing signed-in patrollers read-only and not counted again upon re-submit
+    * don't disable leaders div
+    * don't double-count on re-submit
 * ~~Allow any patroller to submit on weekday w/o leadership~~
+* Remove event listener from submit after initial submission

@@ -6,7 +6,7 @@ import EventHandler from './EventHandler.js';
 class Main {
     constructor(people) {
         this.date = new Date();
-        this.eventHandler = new EventHandler(people);
+        this.eventHandler = new EventHandler(people, this.getDayNight());
         document.getElementById("date").innerText = this.getWeekDay(people);
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
