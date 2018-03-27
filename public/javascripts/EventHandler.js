@@ -471,27 +471,32 @@ export default class EventHandler {
         }
     }
 
-    handlePrintFormButton(LEADERS) {
-        if (!document.getElementById("formSubmit").disabled) {
-            document.getElementById('formSubmit').addEventListener('click', () => {
+    handlePrintFormButton(LEADERS, weekend) {
+        if (! document.getElementById("formSubmit").disabled) {
+            let submit;
+            document.getElementById('formSubmit').addEventListener('click', submit = () => {
                 let answer = Number(prompt(`Password?`));
                 let correct = false;
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer && this.dayNight === `Day`) {
                         correct = true;
-                        document.getElementById("formSubmit").disabled = true;
-                        document.getElementById("formSubmit").classList.add('disabled');
-                        document.getElementById('formSubmit').removeEventListener('click', () => {});
-                        this.diasbleExisting();
+                        if (! weekend) {
+                            document.getElementById("formSubmit").disabled = true;
+                            document.getElementById("formSubmit").classList.add('disabled');
+                            document.getElementById('formSubmit').removeEventListener('click', submit);
+                        }
+                        EventHandler.disableExisting();
                         this.updateDaysCount().then(() => {});
                         window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else if (LEADERS[key] === answer && this.dayNight === `Night`) {
                         correct = true;
-                        document.getElementById("formSubmit").disabled = true;
-                        document.getElementById("formSubmit").classList.add('disabled');
-                        document.getElementById('formSubmit').removeEventListener('click', () => {});
-                        this.diasbleExisting();
+                        if (! weekend) {
+                            document.getElementById("formSubmit").disabled = true;
+                            document.getElementById("formSubmit").classList.add('disabled');
+                            document.getElementById('formSubmit').removeEventListener('click', submit);
+                        }
+                        EventHandler.disableExisting();
                         this.updateDaysCount().then(() => {});
                         window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
@@ -500,24 +505,18 @@ export default class EventHandler {
                 if (! correct) {
                     alert(`Incorrect password. Please try again.`);
                 } else {
-                    document.getElementById('formSubmit').removeEventListener('click', () => {});
+                    document.getElementById('formSubmit').removeEventListener('click', submit);
                 }
-                // } else {
-                //     document.getElementById("formSubmit").disabled = false;
-                //     document.getElementById("formSubmit").classList.remove('disabled');
-                // }
             });
         }
     }
 
-    diasbleExisting() {
+    static disableExisting() {
         let form = document.getElementById(`rosterForm`);
         let elements = form.elements;
         for (let i = 0; i < elements.length; i++) {
-            if (! /\.6\./.test(elements[i].id)) {
+            if (/^((?!\.6\.).)*$/g.test(elements[i].id) && /^((?!team).)*$/g.test(elements[i].id)) {
                 elements[i].disabled = true;
-            } else {
-                console.log(elements[i].id);
             }
         }
     }

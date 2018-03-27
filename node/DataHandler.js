@@ -61,12 +61,12 @@ class DataHandler {
             FS.writeFile(tempFilePath, cells, `utf8`, (err) => {
                 if (err) throw err;
             });
-            /*if (changed === true && tempFilePath) {
+            if (changed === true && tempFilePath) {
                 FS.unlinkSync(finalFilePath);
                 FS.renameSync(tempFilePath, finalFilePath);
             } else {
                 console.log(`File missing.`);
-            }*/
+            }
             callback(results);
         });
     }

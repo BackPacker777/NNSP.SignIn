@@ -61,12 +61,19 @@ class Main {
     overrideLeaderSubmit() {
         const SAT = 6, SUN = 0;
         const OVERRIDE = {
-            OVERRIDE: 777777
+            OVERRIDE: 777777,
+            PD: 234567,
+            APD1: 555555,
+            APD2: 111111,
+            APD3: 222222,
+            TR1: 333333,
+            TR2: 444444
         };
         if (this.date.getDay() !== SAT && this.date.getDay() !== SUN) {
             document.getElementById("formSubmit").disabled = false;
             document.getElementById("formSubmit").classList.remove('disabled');
-            this.eventHandler.handlePrintFormButton(OVERRIDE);
+            let weekend = true;
+            this.eventHandler.handlePrintFormButton(OVERRIDE, weekend);
         }
     }
 
