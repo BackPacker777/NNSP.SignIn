@@ -474,35 +474,38 @@ export default class EventHandler {
     handlePrintFormButton(LEADERS, weekend) {
         if (! document.getElementById("formSubmit").disabled) {
             let submit;
-            document.getElementById('formSubmit').addEventListener('click', submit = () => {
-                let answer = Number(prompt(`Password?`));
+            document.getElementById('formSubmit').addEventListener('click', submit = (event) => {
+                // event.preventDefault();
                 let correct = false;
+                let answer = Number(prompt(`Password?`));
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer && this.dayNight === `Day`) {
                         correct = true;
-                        if (! weekend) {
+                        if (!weekend) {
                             document.getElementById("formSubmit").disabled = true;
                             document.getElementById("formSubmit").classList.add('disabled');
                             document.getElementById('formSubmit').removeEventListener('click', submit);
                         }
                         EventHandler.disableExisting();
-                        this.updateDaysCount().then(() => {});
+                        this.updateDaysCount().then(() => {
+                        });
                         window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else if (LEADERS[key] === answer && this.dayNight === `Night`) {
                         correct = true;
-                        if (! weekend) {
+                        if (!weekend) {
                             document.getElementById("formSubmit").disabled = true;
                             document.getElementById("formSubmit").classList.add('disabled');
                             document.getElementById('formSubmit').removeEventListener('click', submit);
                         }
                         EventHandler.disableExisting();
-                        this.updateDaysCount().then(() => {});
+                        this.updateDaysCount().then(() => {
+                        });
                         window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     }
                 }
-                if (! correct) {
+                if (!correct) {
                     alert(`Incorrect password. Please try again.`);
                 } else {
                     document.getElementById('formSubmit').removeEventListener('click', submit);
@@ -522,11 +525,14 @@ export default class EventHandler {
     }
 
     async updateDaysCount() {
-        let data = JSON.stringify(this.signedIn);
         await fetch(document.url, {
             method: 'POST',
-            headers: {'x-requested-with': 'fetch.1'},
-            body: data
+            headers: {
+                'x-requested-with': 'fetch.1'
+            },
+            body: JSON.stringify(this.signedIn)
+        }).then((response) => {
+            console.log(response);
         });
     }
 }

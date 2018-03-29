@@ -8,7 +8,7 @@
 * ~~Half day checkbox~~
 * ~~Half day counting appears to be glitchy....~~
 * Handle fetch unhandled promise
-* Fix results js 500 error
+* ~~Fix results js 500 error~~
 * Handle write-in guest-patrollers
 * ~~Make existing signed-in patrollers read-only and not counted again upon re-submit~~
     * ~~don't disable leaders div~~
@@ -16,3 +16,4 @@
 * [FIX] Allow any patroller to submit on weekday w/o leadership
 * [FIX] Remove event listener from submit after initial submission
 * Print a meal ticket page?
+* Add required attribute for radio
