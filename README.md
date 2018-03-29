@@ -16,4 +16,4 @@
 * [FIX] Allow any patroller to submit on weekday w/o leadership
 * [FIX] Remove event listener from submit after initial submission
 * Print a meal ticket page?
-* Add required attribute for radio
+* [FIX] Add required attribute for radio
