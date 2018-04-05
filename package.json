@@ -9,9 +9,9 @@
   "author": "Howard Bates",
   "license": "MIT",
   "dependencies": {
-    "ejs": "latest",
+    "ejs": "^2.5.8",
     "formidable": "latest",
     "nedb": "latest",
-    "node-fetch": "latest"
+    "node-fetch": "^2.1.2"
   }
 }

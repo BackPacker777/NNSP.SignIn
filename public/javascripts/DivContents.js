@@ -106,7 +106,7 @@ export default class DivContents {
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
+                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                         </label>
                     </div>
                     <div class="small-1 cell">
@@ -159,7 +159,7 @@ export default class DivContents {
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
+                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                         </label>
                     </div>
                     <div class="small-1 cell">
@@ -204,7 +204,7 @@ export default class DivContents {
                             </div>
                             <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                                 <label>Radio:
-                                    <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
+                                    <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                                 </label>
                             </div>
                             <div class="small-1 cell">

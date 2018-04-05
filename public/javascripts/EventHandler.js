@@ -10,6 +10,22 @@ export default class EventHandler {
         this.patrollers = patrollers;
         this.dayNight = dayNight;
         this.halfDay = false;
+        this.leaders = {
+            PD: 234567,
+            APD1: 555555,
+            APD2: 111111,
+            APD3: 222222,
+            TR1: 333333,
+            TR2: 444444
+        };
+    }
+
+    set Leaders(leader) {
+        Object.assign(this.leaders, (leader)); // https://stackoverflow.com/a/47116829
+    }
+    
+    set Weekend(isWeekend) {
+        this.weekend = isWeekend;
     }
 
     handleTeamButtons(teamNum) {
@@ -165,19 +181,11 @@ export default class EventHandler {
     }
 
     changeLeaderDiv() {
-        const LEADERS = {
-            PD: 234567,
-            APD1: 555555,
-            APD2: 111111,
-            APD3: 222222,
-            TR1: 333333,
-            TR2: 444444
-        };
         this.handleHalfDay(6, 1, 'regular');
         document.getElementById(`patrollerID.6.1`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.1`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.1`).value) !== LEADERS.PD) {
+                    if (Number(document.getElementById(`patrollerID.6.1`).value) !== this.leaders.PD) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.1`).value = '';
                     } else {
@@ -186,13 +194,15 @@ export default class EventHandler {
                                 this.populateDiv(6, 1, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
                                 });
                                 document.getElementById(`guest.6.1`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.1`).value, `guest`);
                                 });
+                                console.log(`+++`);
+                                this.handlePrintFormButton(this.leaders);
                                 break;
                             }
                         }
@@ -203,13 +213,14 @@ export default class EventHandler {
                             this.populateDiv(6, 1, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
                             document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
                             });
                             document.getElementById(`guest.6.1`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.1`).value, `guest`);
                             });
+                            console.log(`---`);
+                            this.handlePrintFormButton(this.leaders);
                             break;
                         }
                     }
@@ -222,7 +233,7 @@ export default class EventHandler {
         document.getElementById(`patrollerID.6.2`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.2`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.2`).value) !== LEADERS.APD3) {
+                    if (Number(document.getElementById(`patrollerID.6.2`).value) !== this.leaders.APD1 && Number(document.getElementById(`patrollerID.6.2`).value) !== this.leaders.APD2 && Number(document.getElementById(`patrollerID.6.2`).value) !== this.leaders.APD3) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.2`).value = '';
                     } else {
@@ -231,13 +242,14 @@ export default class EventHandler {
                                 this.populateDiv(6, 2, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
                                 document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
                                 });
                                 document.getElementById(`guest.6.2`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
                                 });
+                                console.log(`&&&`);
+                                this.handlePrintFormButton(this.leaders);
                                 break;
                             }
                         }
@@ -248,13 +260,14 @@ export default class EventHandler {
                             this.populateDiv(6, 2, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
                             document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
                             });
                             document.getElementById(`guest.6.2`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
                             });
+                            console.log(`???`);
+                            this.handlePrintFormButton(this.leaders);
                             break;
                         }
                     }
@@ -267,7 +280,7 @@ export default class EventHandler {
         document.getElementById(`patrollerID.6.3`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.3`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.3`).value) !== LEADERS.APD3) {
+                    if (Number(document.getElementById(`patrollerID.6.3`).value) !== this.leaders.APD1 && Number(document.getElementById(`patrollerID.6.3`).value) !== this.leaders.APD2 && Number(document.getElementById(`patrollerID.6.3`).value) !== this.leaders.APD3) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.3`).value = '';
                     } else {
@@ -276,7 +289,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 3, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
+                                this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
                                 });
@@ -293,7 +306,7 @@ export default class EventHandler {
                             this.populateDiv(6, 3, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
+                            this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
                             });
@@ -312,7 +325,7 @@ export default class EventHandler {
         document.getElementById(`patrollerID.6.4`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.4`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD1 && Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD2 && Number(document.getElementById(`patrollerID.6.4`).value) !== LEADERS.APD3) {
+                    if (Number(document.getElementById(`patrollerID.6.4`).value) !== this.leaders.APD1 && Number(document.getElementById(`patrollerID.6.4`).value) !== this.leaders.APD2 && Number(document.getElementById(`patrollerID.6.4`).value) !== this.leaders.APD3) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.4`).value = '';
                     } else {
@@ -321,7 +334,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 4, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
+                                this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
                                 });
@@ -338,7 +351,7 @@ export default class EventHandler {
                             this.populateDiv(6, 4, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
+                            this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
                             });
@@ -357,7 +370,7 @@ export default class EventHandler {
         document.getElementById(`patrollerID.6.5`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.5`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.5`).value) !== LEADERS.TR2) {
+                    if (Number(document.getElementById(`patrollerID.6.5`).value) !== this.leaders.TR1 || Number(document.getElementById(`patrollerID.6.5`).value) !== this.leaders.TR2) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.5`).value = '';
                     } else {
@@ -366,7 +379,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 5, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
+                                this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
                                 });
@@ -383,7 +396,7 @@ export default class EventHandler {
                             this.populateDiv(6, 5, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
+                            this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
                             });
@@ -402,7 +415,7 @@ export default class EventHandler {
         document.getElementById(`patrollerID.6.6`).addEventListener('change', () => {
             if (document.getElementById(`patrollerID.6.6`).value !== '') {
                 if (this.signedIn.length > 0) {
-                    if (Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR1 || Number(document.getElementById(`patrollerID.6.6`).value) !== LEADERS.TR2) {
+                    if (Number(document.getElementById(`patrollerID.6.6`).value) !== this.leaders.TR1 || Number(document.getElementById(`patrollerID.6.6`).value) !== this.leaders.TR2) {
                         alert(`Invalid ID number. Please try again... Or don't...`);
                         document.getElementById(`patrollerID.6.6`).value = '';
                     } else {
@@ -411,7 +424,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 6, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
-                                this.handlePrintFormButton(LEADERS);
+                                this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
                                 });
@@ -428,7 +441,7 @@ export default class EventHandler {
                             this.populateDiv(6, 6, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
-                            this.handlePrintFormButton(LEADERS);
+                            this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
                             });
@@ -471,38 +484,37 @@ export default class EventHandler {
         }
     }
 
-    handlePrintFormButton(LEADERS, weekend) {
+    handlePrintFormButton(LEADERS) {
         if (! document.getElementById("formSubmit").disabled) {
             let submit;
-            document.getElementById('formSubmit').addEventListener('click', submit = (event) => {
-                // event.preventDefault();
+            document.getElementById('formSubmit').addEventListener('click', submit = () => {
                 let correct = false;
                 let answer = Number(prompt(`Password?`));
                 for (let key in LEADERS) {
                     if (LEADERS[key] === answer && this.dayNight === `Day`) {
                         correct = true;
-                        if (!weekend) {
+                        if (!this.weekend) {
                             document.getElementById("formSubmit").disabled = true;
                             document.getElementById("formSubmit").classList.add('disabled');
                             document.getElementById('formSubmit').removeEventListener('click', submit);
                         }
                         EventHandler.disableExisting();
-                        this.updateDaysCount().then(() => {
-                        });
+                        this.updateDaysCount().then(() => { });
                         window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
                     } else if (LEADERS[key] === answer && this.dayNight === `Night`) {
                         correct = true;
-                        if (!weekend) {
+                        if (!this.weekend) {
                             document.getElementById("formSubmit").disabled = true;
                             document.getElementById("formSubmit").classList.add('disabled');
                             document.getElementById('formSubmit').removeEventListener('click', submit);
                         }
                         EventHandler.disableExisting();
-                        this.updateDaysCount().then(() => {
-                        });
+                        this.updateDaysCount().then(() => { });
                         window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
+                    } else {
+                        correct = false;
                     }
                 }
                 if (!correct) {
