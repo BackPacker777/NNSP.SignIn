@@ -17,3 +17,4 @@
 * [FIX] Remove event listener from submit after initial submission
 * Print a meal ticket page?
 * [FIX] Add required attribute for radio
+* [FIX] override weekday
