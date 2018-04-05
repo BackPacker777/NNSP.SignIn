@@ -18,6 +18,7 @@ export default class EventHandler {
             TR1: 333333,
             TR2: 444444
         };
+        this.weekend = false;
     }
 
     set Leaders(leader) {
@@ -195,6 +196,7 @@ export default class EventHandler {
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
                                 document.getElementById(`radioNum.6.1`).required = true;
+                                document.getElementById(`radioNum.6.1`).setAttribute(`required`, `required`);
                                 document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
                                 });
@@ -213,6 +215,7 @@ export default class EventHandler {
                             this.populateDiv(6, 1, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             document.getElementById(`radioNum.6.1`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.1`).value, `radio`);
                             });
@@ -242,6 +245,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 2, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
                                 });
@@ -260,6 +264,7 @@ export default class EventHandler {
                             this.populateDiv(6, 2, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             document.getElementById(`radioNum.6.2`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.2`).value, `radio`);
                             });
@@ -289,6 +294,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 3, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
@@ -306,6 +312,7 @@ export default class EventHandler {
                             this.populateDiv(6, 3, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.3`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.3`).value, `radio`);
@@ -334,6 +341,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 4, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
@@ -351,6 +359,7 @@ export default class EventHandler {
                             this.populateDiv(6, 4, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.4`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.4`).value, `radio`);
@@ -379,6 +388,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 5, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
@@ -396,6 +406,7 @@ export default class EventHandler {
                             this.populateDiv(6, 5, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.5`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.5`).value, `radio`);
@@ -424,6 +435,7 @@ export default class EventHandler {
                                 this.populateDiv(6, 6, i);
                                 document.getElementById("formSubmit").disabled = false;
                                 document.getElementById("formSubmit").classList.remove('disabled');
+                                document.getElementById(`radioNum.6.1`).required = true;
                                 this.handlePrintFormButton(this.leaders);
                                 document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
@@ -441,6 +453,7 @@ export default class EventHandler {
                             this.populateDiv(6, 6, i);
                             document.getElementById("formSubmit").disabled = false;
                             document.getElementById("formSubmit").classList.remove('disabled');
+                            document.getElementById(`radioNum.6.1`).required = true;
                             this.handlePrintFormButton(this.leaders);
                             document.getElementById(`radioNum.6.6`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.6.6`).value, `radio`);
@@ -484,14 +497,14 @@ export default class EventHandler {
         }
     }
 
-    handlePrintFormButton(LEADERS) {
+    handlePrintFormButton() {
         if (! document.getElementById("formSubmit").disabled) {
             let submit;
             document.getElementById('formSubmit').addEventListener('click', submit = () => {
                 let correct = false;
                 let answer = Number(prompt(`Password?`));
-                for (let key in LEADERS) {
-                    if (LEADERS[key] === answer && this.dayNight === `Day`) {
+                for (let key in this.leaders) {
+                    if (this.leaders[key] === answer && this.dayNight === `Day`) {
                         correct = true;
                         if (!this.weekend) {
                             document.getElementById("formSubmit").disabled = true;
@@ -502,7 +515,7 @@ export default class EventHandler {
                         this.updateDaysCount().then(() => { });
                         window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                         break;
-                    } else if (LEADERS[key] === answer && this.dayNight === `Night`) {
+                    } else if (this.leaders[key] === answer && this.dayNight === `Night`) {
                         correct = true;
                         if (!this.weekend) {
                             document.getElementById("formSubmit").disabled = true;

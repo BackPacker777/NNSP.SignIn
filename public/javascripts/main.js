@@ -68,7 +68,6 @@ class Main {
             document.getElementById("formSubmit").classList.remove('disabled');
             this.eventHandler.Weekend = true;
             this.eventHandler.Leaders = OVERRIDE;
-            // this.eventHandler.handlePrintFormButton(OVERRIDE, weekend);
         }
     }
 
