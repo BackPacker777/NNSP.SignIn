@@ -66,8 +66,10 @@ class Main {
         if (this.date.getDay() !== SAT && this.date.getDay() !== SUN) {
             document.getElementById("formSubmit").disabled = false;
             document.getElementById("formSubmit").classList.remove('disabled');
-            this.eventHandler.Weekend = true;
+            this.eventHandler.Weekend = false;
             this.eventHandler.Leaders = OVERRIDE;
+        } else {
+            this.eventHandler.Weekend = true;
         }
     }
 
