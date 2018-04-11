@@ -13,8 +13,8 @@
 * ~~Make existing signed-in patrollers read-only and not counted again upon re-submit~~
     * ~~don't disable leaders div~~
     * ~~don't double-count on re-submit~~
-* [FIX] Allow any patroller to submit on weekday w/o leadership
+* ~~[FIX] Allow any patroller to submit on weekday w/o leadership~~
 * [FIX] Remove event listener from submit after initial submission
 * Print a meal ticket page?
-* [FIX] Add required attribute for radio
-* [FIX] override weekday
+* ~~[FIX] Add required attribute for radio~~
+* ~~[FIX] override weekday~~

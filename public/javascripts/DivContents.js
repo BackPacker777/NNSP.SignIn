@@ -9,45 +9,45 @@ export default class DivContents {
         return `<div class="grid-x" id="${teamNum}.${counter}">
                     <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" name="patrollerID" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" class="submitInclude" name="patrollerID" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
                         <label>Name:
-                            <input type="text" readonly id="name.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="name.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
+                            <input type="number" class="submitInclude" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Rating:
-                            <input type="text" readonly id="rating.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="rating.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Time:
-                            <input type="text" readonly id="time.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="time.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>1/2 day?:</label>
                         <div class="grid-x align-center vertical-center">
                             <div class="small-4 cell">
-                                <input type="checkbox" id="halfDay.${teamNum}.${counter}">
+                                <input type="checkbox" class="submitInclude" id="halfDay.${teamNum}.${counter}">
                             </div>
                         </div>
                     </div>
                     <div class="small-1 cell">
                         <label>Days:
-                            <input type="text" readonly id="days.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="days.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-2 cell" id="guestDiv.${teamNum}.${counter}">
                         <label>Guest:
-                            <input type="text" id="guest.${teamNum}.${counter}" placeholder="Guest">
+                            <input type="text" class="submitInclude" id="guest.${teamNum}.${counter}" placeholder="Guest">
                         </label>
                     </div>
                 </div>`;
@@ -57,35 +57,35 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-3 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" class="submitInclude" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-5 cell">
                         <label>Name:
-                            <input type="text" readonly id="name.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="name.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
+                            <input type="number" class="submitInclude" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#" required>
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Time:
-                            <input type="text" readonly id="time.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="time.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>1/2 day?:</label>
                         <div class="grid-x align-center vertical-center">
                             <div class="small-4 cell">
-                                <input type="checkbox" id="halfDay.${teamNum}.${counter}">
+                                <input type="checkbox" class="submitInclude" id="halfDay.${teamNum}.${counter}">
                             </div>
                         </div>
                     </div>
                     <div class="small-1 cell">
                         <label>Days:
-                            <input type="text" readonly id="days.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="days.${teamNum}.${counter}">
                         </label>
                     </div>
                 </div>`;
@@ -96,50 +96,50 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-1 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" class="submitInclude" maxlength="6" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
                         <label>Name:
-                            <input type="text" readonly id="name.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="name.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
+                            <input type="number" class="submitInclude" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Position:
-                            <input type="text" readonly id="position.6.${counter}" value="${POSITIONS[leaderNum]}">
+                            <input type="text" class="submitInclude" readonly id="position.6.${counter}" value="${POSITIONS[leaderNum]}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Rating:
-                            <input type="text" readonly id="rating.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="rating.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Time:
-                            <input type="text" readonly id="time.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="time.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>1/2 day?:</label>
                         <div class="grid-x align-center vertical-center">
                             <div class="small-4 cell">
-                                <input type="checkbox" id="halfDay.${teamNum}.${counter}">
+                                <input type="checkbox" class="submitInclude" id="halfDay.${teamNum}.${counter}">
                             </div>
                         </div>
                     </div>
                     <div class="small-1 cell">
                         <label>Days:
-                            <input type="text" readonly id="days.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="days.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-2 cell" id="guestDiv.${teamNum}.${counter}">
                         <label>Guest:
-                            <input type="text" id="guest.${teamNum}.${counter}" placeholder="Guest">
+                            <input type="text" class="submitInclude" id="guest.${teamNum}.${counter}" placeholder="Guest">
                         </label>
                     </div>
                 </div>`;
@@ -149,42 +149,42 @@ export default class DivContents {
         return `<div class="grid-x"">
                     <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                         <label>ID:
-                            <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                            <input type="number" class="submitInclude" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                         </label>
                     </div>
                     <div class="small-3 cell">
                         <label>Name:
-                            <input type="text" readonly id="name.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="name.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                         <label>Radio:
-                            <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
+                            <input type="number" class="submitInclude" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Rating:
-                            <input type="text" readonly id="rating.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="rating.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Time:
-                            <input type="text" readonly id="time.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="time.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Days:
-                            <input type="text" readonly id="days.${teamNum}.${counter}">
+                            <input type="text" class="submitInclude" readonly id="days.${teamNum}.${counter}">
                         </label>
                     </div>
                     <div class="small-2 cell" id="guestDiv.${teamNum}.${counter}">
                         <label>Guest:
-                            <input type="text" id="guest.${teamNum}.${counter}" placeholder="Guest">
+                            <input type="text" class="submitInclude" id="guest.${teamNum}.${counter}" placeholder="Guest">
                         </label>
                     </div>
                     <div class="small-1 cell">
                         <label>Race Course:
-                            <input type="text" readonly value="${RACE_TIMES[counter]}">
+                            <input type="text" class="submitInclude" readonly value="${RACE_TIMES[counter]}">
                         </label>
                     </div>
                 </div>`;
@@ -194,37 +194,37 @@ export default class DivContents {
         return `<div class="grid-x"">
                             <div class="small-2 cell" id="patroller.${teamNum}.${counter}">
                                 <label>ID:
-                                    <input type="number" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
+                                    <input type="number" class="submitInclude" maxlength="6" name="patrollerID" id="patrollerID.${teamNum}.${counter}" placeholder="ID #">
                                 </label>
                             </div>
                             <div class="small-3 cell">
                                 <label>Name:
-                                    <input type="text" readonly id="name.${teamNum}.${counter}">
+                                    <input type="text" class="submitInclude" readonly id="name.${teamNum}.${counter}">
                                 </label>
                             </div>
                             <div class="small-1 cell" id="radioDiv.${teamNum}.${counter}">
                                 <label>Radio:
-                                    <input type="number" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
+                                    <input type="number" class="submitInclude" maxlength="2" id="radioNum.${teamNum}.${counter}" placeholder="#">
                                 </label>
                             </div>
                             <div class="small-1 cell">
                                 <label>Rating:
-                                    <input type="text" readonly id="rating.${teamNum}.${counter}">
+                                    <input type="text" class="submitInclude" readonly id="rating.${teamNum}.${counter}">
                                 </label>
                             </div>
                             <div class="small-1 cell">
                                 <label>Time:
-                                    <input type="text" readonly id="time.${teamNum}.${counter}">
+                                    <input type="text" class="submitInclude" readonly id="time.${teamNum}.${counter}">
                                 </label>
                             </div>
                             <div class="small-1 cell">
                                 <label>Days:
-                                    <input type="text" readonly id="days.${teamNum}.${counter}">
+                                    <input type="text" class="submitInclude" readonly id="days.${teamNum}.${counter}">
                                 </label>
                             </div>
                             <div class="small-3 cell" id="guestDiv.${teamNum}.${counter}">
                                 <label>Guest:
-                                    <input type="text" id="guest.${teamNum}.${counter}" placeholder="Guest">
+                                    <input type="text" class="submitInclude" id="guest.${teamNum}.${counter}" placeholder="Guest">
                                 </label>
                             </div>
                         </div>`;

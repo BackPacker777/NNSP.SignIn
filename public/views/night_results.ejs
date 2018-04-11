@@ -12,6 +12,61 @@
         <div class="cell small-1 large-1"><h4 id="dayNight"></h4></div>
     </div>
     <hr>
+    <% for (let i = 0; i < data.length; i++) { %>
+        <div class="grid-x">
+            <h5>Night Team</h5>
+        </div>
+        <div class="grid-x">
+            <div class="cell small-1">
+                <h6><strong>ID</strong></h6>
+            </div>
+            <div class="cell small-2">
+                <h6><strong>Name</strong></h6>
+            </div>
+            <div class="cell small-2">
+                <h6><strong>Rating</strong></h6>
+            </div>
+            <div class="cell small-2">
+                <h6><strong>Time</strong></h6>
+            </div>
+            <div class="cell small-2">
+                <h6><strong>Radio</strong></h6>
+            </div>
+            <div class="cell small-1">
+                <h6><strong>Days</strong></h6>
+            </div>
+            <div class="cell small-2">
+                <h6><strong>Guest</strong></h6>
+            </div>
+        </div>
+        <div class="grid-x">
+            <% data.forEach((result) => { %>
+                <div class="cell small-1">
+                    <%= result.ID %>
+                </div>
+                <div class="cell small-2">
+                    <%= result.NAME %>
+                </div>
+                <div class="cell small-2">
+                    <%= result.RATING %>
+                </div>
+                <div class="cell small-2">
+                    <%= result.TIME %>
+                </div>
+                <div class="cell small-2">
+                    <%= result.RADIO %>
+                </div>
+                <div class="cell small-1">
+                    <%= result.DAYS %>
+                </div>
+                <div class="cell small-2">
+                    <%= result.GUEST %>
+                </div>
+            <% }); %>
+        </div>
+        <hr>
+        <% break; %>
+    <% } %>
 </div>
 <!-- SCRIPTS -->
 <script src="/public/javascripts/results.js" type="module"></script>

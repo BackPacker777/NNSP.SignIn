@@ -6,14 +6,23 @@ import EventHandler from './EventHandler.js';
 class Main {
     constructor(people) {
         this.date = new Date();
-        this.eventHandler = new EventHandler(people, this.getDayNight());
+        this.isWeekend = false;
+        this.determineWeekend();
+        this.eventHandler = new EventHandler(people, this.getDayNight(), this.isWeekend);
         document.getElementById("date").innerText = this.getWeekDay(people);
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
         document.getElementById("formSubmit").disabled = true;
         document.getElementById("formSubmit").classList.add('disabled');
         this.prepUX();
-        this.overrideLeaderSubmit();
+        // this.overrideLeaderSubmit();
+    }
+
+    determineWeekend() {
+        const SAT = 6, SUN = 0;
+        if (this.date.getDay() === SAT && this.date.getDay() === SUN) {
+            this.isWeekend = true;
+        }
     }
 
     getWeekDay(patrollers) {
@@ -35,6 +44,9 @@ class Main {
     }
 
     prepUX() {
+        const OVERRIDE = {
+            OVERRIDE: 777777,
+        };
         let teamNum = 1;
         if (this.getDayNight() === "Day") {
             const MAX_TEAM = 6;
@@ -55,6 +67,11 @@ class Main {
                 }
                 counter++;
             }
+        }
+        if (! this.isWeekend) {
+            document.getElementById("formSubmit").disabled = false;
+            document.getElementById("formSubmit").classList.remove('disabled');
+            this.eventHandler.Leaders = OVERRIDE;
         }
     }
 

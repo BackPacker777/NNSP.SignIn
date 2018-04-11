@@ -5,7 +5,7 @@
 import DivContents from "./DivContents.js";
 
 export default class EventHandler {
-    constructor(patrollers, dayNight) {
+    constructor(patrollers, dayNight, isWeekend) {
         this.signedIn = [];
         this.patrollers = patrollers;
         this.dayNight = dayNight;
@@ -18,15 +18,11 @@ export default class EventHandler {
             TR1: 333333,
             TR2: 444444
         };
-        this.weekend = false;
+        this.isWeekend = isWeekend;
     }
 
     set Leaders(leader) {
         Object.assign(this.leaders, (leader)); // https://stackoverflow.com/a/47116829
-    }
-
-    set Weekend(isWeekend) {
-        this.weekend = isWeekend;
     }
 
     handleTeamButtons(teamNum) {
@@ -256,7 +252,6 @@ export default class EventHandler {
                                 document.getElementById(`guest.6.2`).addEventListener('change', () => {
                                     this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
                                 });
-                                console.log(`&&&`);
                                 this.handlePrintFormButton(this.leaders);
                                 break;
                             }
@@ -275,7 +270,6 @@ export default class EventHandler {
                             document.getElementById(`guest.6.2`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`guest.6.2`).value, `guest`);
                             });
-                            console.log(`???`);
                             this.handlePrintFormButton(this.leaders);
                             break;
                         }
@@ -502,33 +496,31 @@ export default class EventHandler {
     }
 
     handlePrintFormButton() {
-        console.log(this.signedIn.length);
         if (! document.getElementById("formSubmit").disabled && this.signedIn.length > 0) {
             let submit;
             document.getElementById('formSubmit').addEventListener('click', submit = () => {
-                console.log(this.weekend);
                 if (document.getElementById("rosterForm").checkValidity()) {
                     let correct = false;
                     let answer = Number(prompt(`Password?`));
                     for (let key in this.leaders) {
                         if (this.leaders[key] === answer && this.dayNight === `Day`) {
                             correct = true;
-                            if (this.weekend) {
+                            /*if (this.isWeekend === true) {
                                 document.getElementById("formSubmit").disabled = true;
                                 document.getElementById("formSubmit").classList.add('disabled');
                                 document.getElementById('formSubmit').removeEventListener('click', submit);
-                            }
+                            }*/
                             EventHandler.disableExisting();
                             this.updateDaysCount().then(() => { });
                             window.open('/public/views/day_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                             break;
                         } else if (this.leaders[key] === answer && this.dayNight === `Night`) {
                             correct = true;
-                            if (this.weekend) {
+                            /*if (this.isWeekend === true) {
                                 document.getElementById("formSubmit").disabled = true;
                                 document.getElementById("formSubmit").classList.add('disabled');
                                 document.getElementById('formSubmit').removeEventListener('click', submit);
-                            }
+                            }*/
                             EventHandler.disableExisting();
                             this.updateDaysCount().then(() => { });
                             window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
@@ -549,10 +541,12 @@ export default class EventHandler {
 
     static disableExisting() {
         let form = document.getElementById(`rosterForm`);
-        let elements = form.elements;
+        let elements = form.getElementsByClassName(`submitInclude`); // To exclude the submit button
         for (let i = 0; i < elements.length; i++) {
             if (/^((?!\.6\.).)*$/g.test(elements[i].id) && /^((?!team).)*$/g.test(elements[i].id)) {
-                elements[i].disabled = true;
+                if (elements[i] !== `<input type="submit" class="button round expanded" id="formSubmit" value="PRINT FORM">`) {
+                    elements[i].disabled = true;
+                }
             }
         }
     }
