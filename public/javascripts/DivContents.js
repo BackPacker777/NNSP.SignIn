@@ -184,7 +184,7 @@ export default class DivContents {
                     </div>
                     <div class="small-1 cell">
                         <label>Race Course:
-                            <input type="text" class="submitInclude" readonly value="${RACE_TIMES[counter]}">
+                            <input type="text" class="submitInclude" id="race.${teamNum}.${counter}" readonly value="${RACE_TIMES[counter]}">
                         </label>
                     </div>
                 </div>`;

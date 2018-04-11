@@ -154,7 +154,8 @@ export default class EventHandler {
             TIME: document.getElementById(`time.${teamNum}.${counter}`).value,
             DAYS: Number(this.patrollers[i][4]) + dayCount,
             GUEST: document.getElementById(`guest.${teamNum}.${counter}`).value,
-            TEAM: teamNum
+            TEAM: teamNum,
+            RACE: document.getElementById(`race.${teamNum}.${counter}`).value,
         };
         this.signedIn.push(patroller);
         document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;

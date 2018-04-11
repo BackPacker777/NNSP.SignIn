@@ -38,7 +38,8 @@ class Main {
         if (this.date.getHours() > BEGIN_NIGHT && this.date.getHours() < END_NIGHT) {
             dayNight = "Night";
         } else {
-            dayNight = "Day";
+            // dayNight = "Day";
+            dayNight = "Night";
         }
         return dayNight;
     }
