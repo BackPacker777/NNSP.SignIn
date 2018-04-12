@@ -2,7 +2,7 @@
 
 * ~~Create print page (finish)~~
 * ~~Split print pages into day and night results~~
-* Finish night_results.ejs
+* ~~Finish night_results.ejs~~
 * ~~Update time/radio/guest upon sign-in~~
 * Testing
 * ~~Half day checkbox~~
@@ -14,7 +14,7 @@
     * ~~don't disable leaders div~~
     * ~~don't double-count on re-submit~~
 * ~~[FIX] Allow any patroller to submit on weekday w/o leadership~~
-* [FIX] Remove event listener from submit after initial submission
+* [FIX] Remove event listener from submit after initial submission??
 * Print a meal ticket page?
 * ~~[FIX] Add required attribute for radio~~
 * ~~[FIX] override weekday~~

@@ -15,7 +15,6 @@ class Main {
         document.getElementById("formSubmit").disabled = true;
         document.getElementById("formSubmit").classList.add('disabled');
         this.prepUX();
-        // this.overrideLeaderSubmit();
     }
 
     determineWeekend() {
@@ -38,8 +37,8 @@ class Main {
         if (this.date.getHours() > BEGIN_NIGHT && this.date.getHours() < END_NIGHT) {
             dayNight = "Night";
         } else {
-            // dayNight = "Day";
-            dayNight = "Night";
+            dayNight = "Day";
+            // dayNight = "Night";
         }
         return dayNight;
     }
@@ -55,17 +54,23 @@ class Main {
                 this.eventHandler.handleTeamButtons(teamNum);
                 teamNum++;
             }
+            document.getElementById(`team0`).style.display = 'none';
         } else {
-            const MAX_PATROLLERS = 10;
+            const MAX_PATROLLERS = 12;
+            const MAX_TEAM = 6;
             const RACE_TIMES = ['', '7:00', '7:15', '7:30', '7:45', '8:00', '8:15', '8:30', '8:45'];
             let counter = 1;
             document.getElementById(`team${teamNum}`).innerHTML = `<legend><strong>Night Team:</strong></legend>`;
             while (counter <= MAX_PATROLLERS) {
-                if (counter < RACE_TIMES.length) {
-                    document.getElementById(`team1`).insertAdjacentHTML('beforeend', DivContents.getNightRaceDivs(teamNum, counter, RACE_TIMES));
-                } else {
-                    document.getElementById(`team1`).insertAdjacentHTML('beforeend', DivContents.getNightDivs(teamNum, counter));
+                if (counter <= MAX_TEAM) {
+                    document.getElementById(`team${counter}`).style.display = 'none';
                 }
+                if (counter < RACE_TIMES.length) {
+                    document.getElementById(`team0`).insertAdjacentHTML('beforeend', DivContents.getNightRaceDivs(0, counter, RACE_TIMES));
+                } else {
+                    document.getElementById(`team0`).insertAdjacentHTML('beforeend', DivContents.getNightDivs(0, counter));
+                }
+                this.eventHandler.changePatrollerDiv(0, counter);
                 counter++;
             }
         }
@@ -73,21 +78,6 @@ class Main {
             document.getElementById("formSubmit").disabled = false;
             document.getElementById("formSubmit").classList.remove('disabled');
             this.eventHandler.Leaders = OVERRIDE;
-        }
-    }
-
-    overrideLeaderSubmit() {
-        const SAT = 6, SUN = 0;
-        const OVERRIDE = {
-            OVERRIDE: 777777,
-        };
-        if (this.date.getDay() !== SAT && this.date.getDay() !== SUN) {
-            document.getElementById("formSubmit").disabled = false;
-            document.getElementById("formSubmit").classList.remove('disabled');
-            this.eventHandler.Weekend = false;
-            this.eventHandler.Leaders = OVERRIDE;
-        } else {
-            this.eventHandler.Weekend = true;
         }
     }
 

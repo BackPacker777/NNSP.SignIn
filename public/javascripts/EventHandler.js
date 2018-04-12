@@ -32,7 +32,7 @@ export default class EventHandler {
             CANDIDATES: 5,
             LEADERS: 6
         };
-        const START_CHILDREN = 3;
+        const START_CHILDREN = 5;
         if (teamNum < TEAMS.LEADERS) {
             document.getElementById(`joinTeam${teamNum}`).addEventListener('click', () => {
                 if (teamNum <= TEAMS.DAY) {
@@ -75,6 +75,7 @@ export default class EventHandler {
                             break;
                         } else if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
                             this.populateDiv(teamNum, counter, i);
+                            document.getElementById(`radioNum.${teamNum}.${counter}`).required = true;
                             correctID = true;
                             document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value, `radio`);
@@ -96,6 +97,7 @@ export default class EventHandler {
                     for (let i = 0; i < this.patrollers.length; i++) {
                         if (Number(this.patrollers[i][0]) === Number(document.getElementById(`patrollerID.${teamNum}.${counter}`).value)) {
                             this.populateDiv(teamNum, counter, i);
+                            document.getElementById(`radioNum.${teamNum}.${counter}`).required = true;
                             correctID = true;
                             document.getElementById(`radioNum.${teamNum}.${counter}`).addEventListener('change', () => {
                                 this.updatePatrollerInfo(this.patrollers[i][0], document.getElementById(`radioNum.${teamNum}.${counter}`).value, `radio`);
@@ -141,11 +143,15 @@ export default class EventHandler {
         if (minutes < 10) {
             minutes = `0${minutes}`;
         }
+        let race;
         let dayCount = 1;
         if (this.halfDay === true) {
             dayCount = .5;
         }
         document.getElementById(`time.${teamNum}.${counter}`).value = `${time.getHours()}:${minutes}`;
+        if (document.getElementById(`race.${teamNum}.${counter}`)) {
+            race = document.getElementById(`race.${teamNum}.${counter}`).value;
+        }
         let patroller = {
             ID: Number(this.patrollers[i][0]),
             RADIO: document.getElementById(`radioNum.${teamNum}.${counter}`).value,
@@ -155,7 +161,7 @@ export default class EventHandler {
             DAYS: Number(this.patrollers[i][4]) + dayCount,
             GUEST: document.getElementById(`guest.${teamNum}.${counter}`).value,
             TEAM: teamNum,
-            RACE: document.getElementById(`race.${teamNum}.${counter}`).value,
+            RACE: race
         };
         this.signedIn.push(patroller);
         document.getElementById(`name.${teamNum}.${counter}`).value = `${this.patrollers[i][2]} ${this.patrollers[i][1]}`;
@@ -532,9 +538,9 @@ export default class EventHandler {
                     }
                     if (!correct) {
                         alert(`Incorrect password. Please try again.`);
-                    } else {
+                    }/* else {
                         document.getElementById('formSubmit').removeEventListener('click', submit);
-                    }
+                    }*/
                 }
             });
         }
