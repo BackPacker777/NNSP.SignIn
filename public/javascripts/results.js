@@ -3,6 +3,7 @@
 class results {
     constructor() {
         results.updateDate();
+        window.print();setTimeout(`window.close()`, 100);
     }
 
     static updateDate() {

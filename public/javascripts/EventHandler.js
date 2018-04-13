@@ -529,7 +529,7 @@ export default class EventHandler {
                                 document.getElementById('formSubmit').removeEventListener('click', submit);
                             }*/
                             EventHandler.disableExisting();
-                            this.updateDaysCount().then(() => { });
+                            this.updateDaysCount().then((response) => { });
                             window.open('/public/views/night_results.ejs', '_blank', 'location=yes,height=900,width=1000,scrollbars=yes,status=yes');
                             break;
                         } else {
@@ -561,12 +561,21 @@ export default class EventHandler {
     async updateDaysCount() {
         await fetch(document.url, {
             method: 'POST',
+            mode:  'no-cors',
             headers: {
                 'x-requested-with': 'fetch.1'
             },
             body: JSON.stringify(this.signedIn)
         }).then((response) => {
-            console.log(response);
+            if (response.type === `opaque`) {
+                console.log(`OPAQUE`);
+            }
+            if (response.status !== 200) {
+                console.log(`ERROR`);
+            }
+            console.log(response.text);
+        }).catch((err) => {
+            console.log('Fetch Error :-S', err);
         });
     }
 }
