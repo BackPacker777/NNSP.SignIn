@@ -561,7 +561,7 @@ export default class EventHandler {
     async updateDaysCount() {
         await fetch(document.url, {
             method: 'POST',
-            mode:  'no-cors',
+            // mode:  'no-cors',
             headers: {
                 'x-requested-with': 'fetch.1'
             },
