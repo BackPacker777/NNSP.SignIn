@@ -11,12 +11,12 @@ export default class EventHandler {
         this.dayNight = dayNight;
         this.halfDay = false;
         this.leaders = {
-            PD: 234567,
-            APD1: 555555,
-            APD2: 111111,
+            PD: 178647,
+            APD1: 128072,
+            APD2: 251542,
             APD3: 222222,
-            TR1: 333333,
-            TR2: 444444
+            TR1: 178651,
+            TR2: 219670
         };
         this.isWeekend = isWeekend;
     }

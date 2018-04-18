@@ -55,6 +55,16 @@ class DataHandler {
                 cells += `${row}\n`;
             });
             cells = cells.replace(/\n*$/,``);
+
+            /*FS.openSync(tempFilePath, 'w');
+            FS.chmodSync(tempFilePath, 0o777);
+            FS.writeFileSync(tempFilePath, cells, `utf8`);
+            if (changed === true && tempFilePath) {
+                FS.unlinkSync(finalFilePath);
+                FS.openSync(finalFilePath, 'w');
+                FS.chmodSync(finalFilePath, 0o777);
+                FS.renameSync(tempFilePath, finalFilePath);*/
+
             FS.writeFile(tempFilePath, cells, `utf8`, (err) => {
                 if (err) throw err;
             });
