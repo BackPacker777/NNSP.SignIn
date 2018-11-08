@@ -12,8 +12,6 @@ class Main {
         document.getElementById("date").innerText = this.getWeekDay(people);
         document.getElementById("weekDay").innerText = `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
         document.getElementById("dayNight").innerText = this.getDayNight();
-        document.getElementById("formSubmit").disabled = true;
-        document.getElementById("formSubmit").classList.add('disabled');
         this.prepUX();
     }
 
@@ -38,7 +36,6 @@ class Main {
             dayNight = "Night";
         } else {
             dayNight = "Day";
-            // dayNight = "Night";
         }
         return dayNight;
     }
@@ -76,7 +73,6 @@ class Main {
         }
         if (! this.isWeekend) {
             document.getElementById("formSubmit").disabled = false;
-            document.getElementById("formSubmit").classList.remove('disabled');
             this.eventHandler.Leaders = OVERRIDE;
         }
     }

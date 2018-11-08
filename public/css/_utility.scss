@@ -5,3 +5,16 @@
 @mixin font-size($value) {
      font-size: $value;
 }
+
+.black {
+     background-color: #000000;
+     color: white;
+}
+
+.secure {
+  -webkit-text-security:disc;
+}
+
+.border {
+  border: thin solid #000000;
+}

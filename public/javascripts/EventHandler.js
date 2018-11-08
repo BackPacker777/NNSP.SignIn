@@ -551,7 +551,7 @@ export default class EventHandler {
         let elements = form.getElementsByClassName(`submitInclude`); // To exclude the submit button
         for (let i = 0; i < elements.length; i++) {
             if (/^((?!\.6\.).)*$/g.test(elements[i].id) && /^((?!team).)*$/g.test(elements[i].id)) {
-                if (elements[i] !== `<input type="submit" class="button round expanded" id="formSubmit" value="PRINT FORM">`) {
+                if (elements[i] !== `<input type='submit' id='formSubmit' value='PRINT ROSTER' class="button large expanded border">`) {
                     elements[i].disabled = true;
                 }
             }

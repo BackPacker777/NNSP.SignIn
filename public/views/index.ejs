@@ -1,20 +1,29 @@
 <% include public/views/header.ejs %>
 
-<div class="grid-container">
-    <div class="grid-x">
-        <div class="cell small-12 text-center">
-            <h3>Nub's Nob Ski Patrol Sign-In</h3>
+<div id="tipTop">
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x black">
+            <div class="small-12 cell text-center">
+                <h5><strong>Nub's Nob Ski Patrol Sign-In - 2019</strong></h5>
+                <!--<h5>Second Hour Quiz #5</h5>-->
+            </div>
         </div>
     </div>
-    <div class="grid-x">
-        <div class="cell small-4 large-4"><h5 id="date"></h5></div>
-        <div class="cell small-4 large-4 text-center"><h5 id="weekDay"></h5></div>
-        <div class="cell small-4 large-4 text-right"><h5 id="dayNight"></h5></div>
+</div>
+<div id="topMast">
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x">
+            <div class="small-5 cell"><input type='submit' id='formSubmit' value='PRINT ROSTER' class="button large expanded border"></div>
+            <div class="small-2 cell text-center"><img src="public/images/nsp_logo.png" alt="NSP Logo" id="nspLogo" width="80" height="100" class="glow"></div>
+            <div class="cell small-1 text-center"><h5 class="vertical-center" id="date"></h5></div>
+            <div class="cell small-2 text-center"><h5 class="vertical-center" id="weekDay"></h5></div>
+            <div class="cell small-1 text-center"><h5 class="vertical-center" id="dayNight"></h5></div>
+        </div>
     </div>
+</div>
+<div class="grid-container fluid" id="masterDiv">
     <form id="rosterForm" action="javascript:0">
-
         <fieldset id="team0"></fieldset>
-
         <fieldset id="team1">
             <hr>
             <div class="grid-x grid-padding-x">
@@ -74,9 +83,6 @@
         <fieldset id="team6">
             <legend id="joinTeam6"><strong>Leadership/Trainers:</strong></legend>
         </fieldset>
-        <div class="small-22 small-centered cell">
-            <input type="submit" class="button round expanded" id="formSubmit" value="PRINT FORM">
-        </div>
     </form>
 </div>
 <!-- SCRIPTS -->
