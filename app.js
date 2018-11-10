@@ -14,7 +14,7 @@ class app {
     loadServer() {
         const HTTP = require('http');
         const EJS = require('ejs');
-        const PORT = 8111;
+        const PORT = process.env.PORT || 8111;
 
         HTTP.createServer((request, response) => {
 
