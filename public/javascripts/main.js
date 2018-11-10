@@ -17,7 +17,7 @@ class Main {
 
     determineWeekend() {
         const SAT = 6, SUN = 0;
-        if (this.date.getDay() === SAT && this.date.getDay() === SUN) {
+        if (this.date.getDay() === SAT || this.date.getDay() === SUN) {
             this.isWeekend = true;
         }
     }
